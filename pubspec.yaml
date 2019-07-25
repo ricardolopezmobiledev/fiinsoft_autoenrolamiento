@@ -49,6 +49,8 @@ flutter:
     - assets/promociones.png
     - assets/solicitudes.png
     - assets/tareas.png
+    - assets/ic_profile.png
+    - assets/beginprocess.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
