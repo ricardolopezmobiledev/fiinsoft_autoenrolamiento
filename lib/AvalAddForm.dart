@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:fiinsoft_autoenrolamiento/Seguimiento.dart';
 import 'Model/Objects/Choise.dart';
 
-class RegisterForm extends StatefulWidget {
-  const RegisterForm({Key key}) : super(key: key);
+class AvalAddForm extends StatefulWidget {
+  const AvalAddForm({Key key}) : super(key: key);
 
   @override
-  _RegisterFormState createState() => _RegisterFormState();
+  _AvalAddFormState createState() => _AvalAddFormState();
 }
 
-class _RegisterFormState extends State<RegisterForm> {
+class _AvalAddFormState extends State<AvalAddForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _agreedToTOS = true;
+  int _n = 0;
+  bool _value1 = false;
+  void _onChanged1(bool value) => setState(() => _value1 = value);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,6 @@ class _RegisterFormState extends State<RegisterForm> {
               }
             },
           ),
-          /*const SizedBox(height: 16.0),*/
           TextFormField(
             decoration: const InputDecoration(
               labelText: 'Apellido paterno',
@@ -41,7 +42,6 @@ class _RegisterFormState extends State<RegisterForm> {
               }
             },
           ),
-          /*const SizedBox(height: 16.0),*/
           TextFormField(
             decoration: const InputDecoration(
               labelText: 'Apellido materno',
@@ -54,36 +54,98 @@ class _RegisterFormState extends State<RegisterForm> {
           ),
           TextFormField(
             decoration: const InputDecoration(
-              labelText: 'Teléfono',
+              labelText: 'Fecha de nacimiento',
             ),
             validator: (String value) {
               if (value.trim().isEmpty) {
-                return 'Teléfono requerido';
+                return 'Fecha de nacimiento requerida';
               }
             },
           ),
           TextFormField(
             decoration: const InputDecoration(
-              labelText: 'Tipo',
+              labelText: 'RFC',
             ),
             validator: (String value) {
               if (value.trim().isEmpty) {
-                return 'Tipo requerido';
+                return 'RFC requerido';
               }
             },
           ),
-          /*const SizedBox(height: 16.0),*/
           TextFormField(
             decoration: const InputDecoration(
-              labelText: 'Producto',
+              labelText: 'CURP',
             ),
             validator: (String value) {
               if (value.trim().isEmpty) {
-                return 'Producto Requerido';
+                return 'CURP requerido';
               }
             },
           ),
-          /*const SizedBox(height: 16.0),*/
+          SizedBox(
+            width: 1000.0,
+            height: 10.0,
+            child: null,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Expanded(
+                flex: 3,
+                child: new Text('Declara que NO es colaborador de la institución o tienes algún familiar en esta institución.'),
+              ),
+              Expanded(
+                flex: 1,
+                child: Container(
+                  child: null,
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: new Switch(value: _value1, onChanged: _onChanged1),
+              ),
+            ],
+          ),
+          SizedBox(
+            width: 1000.0,
+            height: 10.0,
+            child: null,
+          ),
+          SizedBox(
+            height: 150,
+            child: ListView.builder(
+              itemBuilder: (BuildContext context, int index) {
+                var documento = documentos[index];
+
+                return GestureDetector(
+                  child: new Padding(
+                    padding: const EdgeInsets.all(2.0),
+                    child: Card(
+                      child: SizedBox(
+                        height: 60,
+                        width: double.infinity,
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: Text(documento.Nombre_Doc),
+                              flex: 5,
+                            ),
+
+                            Expanded(
+                              child: documento.icono,
+                              flex: 1,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  onTap: () => onTappedDocumento(documento),
+                );
+              },
+              itemCount: documentos.length,
+            ),
+          ),
           TextFormField(
             decoration: const InputDecoration(
               labelText: 'Código postal',
@@ -104,7 +166,6 @@ class _RegisterFormState extends State<RegisterForm> {
               }
             },
           ),
-          /*const SizedBox(height: 16.0),*/
           TextFormField(
             decoration: const InputDecoration(
               labelText: 'Municipio',
@@ -115,7 +176,6 @@ class _RegisterFormState extends State<RegisterForm> {
               }
             },
           ),
-          /*const SizedBox(height: 16.0),*/
           TextFormField(
             decoration: const InputDecoration(
               labelText: 'Estado',
@@ -136,7 +196,6 @@ class _RegisterFormState extends State<RegisterForm> {
               }
             },
           ),
-          /*const SizedBox(height: 16.0),*/
           TextFormField(
             decoration: const InputDecoration(
               labelText: 'Calle',
@@ -147,7 +206,6 @@ class _RegisterFormState extends State<RegisterForm> {
               }
             },
           ),
-          /*const SizedBox(height: 16.0),*/
           TextFormField(
             decoration: const InputDecoration(
               labelText: 'Numero exterior',
@@ -184,10 +242,7 @@ class _RegisterFormState extends State<RegisterForm> {
 
   void _submit() {
     _formKey.currentState.validate();
-    if (_formKey.currentState.validate()) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => Seguimiento()));
-    }
+    if (_formKey.currentState.validate()) {}
     print('Form submitted');
   }
 
@@ -196,9 +251,37 @@ class _RegisterFormState extends State<RegisterForm> {
       _agreedToTOS = newValue;
     });
   }
+
+  void add() {
+    setState(() {
+      _n++;
+    });
+  }
+
+  void minus() {
+    setState(() {
+      if (_n != 0) _n--;
+    });
+  }
+
 }
 
-class ContactData extends StatelessWidget {
+const List<Documento> documentos = const <Documento>[
+  const Documento(Nombre_Doc: 'INE FRONTAL', icono: Icon(Icons.camera_alt)),
+  const Documento(Nombre_Doc: 'INE REVERSO', icono: Icon(Icons.file_upload)),
+  const Documento(Nombre_Doc: 'CARTA AUTORIZACIÓN', icono: Icon(Icons.file_upload)),
+];
+
+void onTappedDocumento(Documento documento) {}
+
+class Documento {
+  const Documento({this.Nombre_Doc, this.icono});
+
+  final String Nombre_Doc;
+  final Icon icono;
+}
+
+class AvalData extends StatelessWidget {
   Choice _selectedChoice = choices[0];
   void _select(Choice choice) {
     // Causes the app to rebuild with the new _selectedChoice.
@@ -210,40 +293,12 @@ class ContactData extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Solicitud'),
-        actions: <Widget>[
-          // action button
-          /*IconButton(
-              icon: Icon(choices[0].icon),
-              onPressed: () {
-                _select(choices[0]);
-              },
-            ),
-            // action button
-            IconButton(
-              icon: Icon(choices[1].icon),
-              onPressed: () {
-                _select(choices[1]);
-              },
-            ),*/
-          // overflow menu
-          PopupMenuButton<Choice>(
-            onSelected: _select,
-            itemBuilder: (BuildContext context) {
-              return choices.skip(2).map((Choice choice) {
-                return PopupMenuItem<Choice>(
-                  value: choice,
-                  child: Text(choice.title),
-                );
-              }).toList();
-            },
-          ),
-        ],
+        title: const Text('Aval'),
       ),
       body: const SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 8.0),
-          child: RegisterForm(),
+          child: AvalAddForm(),
         ),
       ),
     );

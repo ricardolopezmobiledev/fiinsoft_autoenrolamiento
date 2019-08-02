@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:fiinsoft_autoenrolamiento/Seguimiento.dart';
 import 'Model/Objects/Choise.dart';
 
-class RegisterForm extends StatefulWidget {
-  const RegisterForm({Key key}) : super(key: key);
+class ReferencesAddForm extends StatefulWidget {
+  const ReferencesAddForm({Key key}) : super(key: key);
 
   @override
-  _RegisterFormState createState() => _RegisterFormState();
+  _ReferencesAddFormState createState() => _ReferencesAddFormState();
 }
 
-class _RegisterFormState extends State<RegisterForm> {
+class _ReferencesAddFormState extends State<ReferencesAddForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _agreedToTOS = true;
+  int _n = 0;
+  bool _value1 = false;
+  void _onChanged1(bool value) => setState(() => _value1 = value);
 
   @override
   Widget build(BuildContext context) {
@@ -54,36 +56,121 @@ class _RegisterFormState extends State<RegisterForm> {
           ),
           TextFormField(
             decoration: const InputDecoration(
-              labelText: 'Teléfono',
+              labelText: 'Parentesco',
             ),
             validator: (String value) {
               if (value.trim().isEmpty) {
-                return 'Teléfono requerido';
+                return 'Parentesco requerido';
               }
             },
           ),
-          TextFormField(
-            decoration: const InputDecoration(
-              labelText: 'Tipo',
-            ),
-            validator: (String value) {
-              if (value.trim().isEmpty) {
-                return 'Tipo requerido';
-              }
-            },
+          SizedBox(
+            width: 1000.0,
+            height: 10.0,
+            child: null,
           ),
-          /*const SizedBox(height: 16.0),*/
-          TextFormField(
-            decoration: const InputDecoration(
-              labelText: 'Producto',
-            ),
-            validator: (String value) {
-              if (value.trim().isEmpty) {
-                return 'Producto Requerido';
-              }
-            },
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Expanded(
+                flex: 3,
+                child: new Text('Menos de un año'),
+              ),
+              Expanded(
+                flex: 1,
+                child: Container(
+                  child: null,
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: new Switch(value: _value1, onChanged: _onChanged1),
+              ),
+            ],
           ),
-          /*const SizedBox(height: 16.0),*/
+          SizedBox(
+            width: 1000.0,
+            height: 10.0,
+            child: null,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Expanded(
+                child: Text('Años de conocerlo'),
+                flex: 1,
+              ),
+              Expanded(
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      flex: 1,
+                      child: SizedBox(
+                        width: 30.0,
+                        height: 30.0,
+                        child: FloatingActionButton(
+                          heroTag: "btn1",
+                          onPressed: minus,
+                          child: new Icon(
+                              const IconData(0xe15b,
+                                  fontFamily: 'MaterialIcons'),
+                              color: Colors.black),
+                          backgroundColor: Colors.white,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: new Text('$_n',
+                          textAlign: TextAlign.center,
+                          style: new TextStyle(fontSize: 25.0)),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: SizedBox(
+                        width: 30.0,
+                        height: 30.0,
+                        child: FloatingActionButton(
+                          heroTag: "btn2",
+                          onPressed: add,
+                          child: new Icon(
+                            Icons.add,
+                            color: Colors.black,
+                          ),
+                          backgroundColor: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                flex: 1,
+              ),
+            ],
+          ),
+          SizedBox(
+            width: 1000.0,
+            height: 10.0,
+            child: null,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Expanded(
+                flex: 3,
+                child: new Text('Misma dirección que el titular'),
+              ),
+              Expanded(
+                flex: 1,
+                child: Container(
+                  child: null,
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: new Switch(value: _value1, onChanged: _onChanged1),
+              ),
+            ],
+          ),
           TextFormField(
             decoration: const InputDecoration(
               labelText: 'Código postal',
@@ -163,6 +250,27 @@ class _RegisterFormState extends State<RegisterForm> {
               labelText: 'Numero interior',
             ),
           ),
+
+          TextFormField(
+            decoration: const InputDecoration(
+              labelText: 'Teléfono',
+            ),
+            validator: (String value) {
+              if (value.trim().isEmpty) {
+                return 'Teléfono requerido';
+              }
+            },
+          ),
+          TextFormField(
+            decoration: const InputDecoration(
+              labelText: 'Tipo',
+            ),
+            validator: (String value) {
+              if (value.trim().isEmpty) {
+                return 'Tipo requerido';
+              }
+            },
+          ),
           Row(
             children: <Widget>[
               const Spacer(),
@@ -184,10 +292,7 @@ class _RegisterFormState extends State<RegisterForm> {
 
   void _submit() {
     _formKey.currentState.validate();
-    if (_formKey.currentState.validate()) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => Seguimiento()));
-    }
+    if (_formKey.currentState.validate()) {}
     print('Form submitted');
   }
 
@@ -196,9 +301,21 @@ class _RegisterFormState extends State<RegisterForm> {
       _agreedToTOS = newValue;
     });
   }
+
+  void add() {
+    setState(() {
+      _n++;
+    });
+  }
+
+  void minus() {
+    setState(() {
+      if (_n != 0) _n--;
+    });
+  }
 }
 
-class ContactData extends StatelessWidget {
+class ReferenceData extends StatelessWidget {
   Choice _selectedChoice = choices[0];
   void _select(Choice choice) {
     // Causes the app to rebuild with the new _selectedChoice.
@@ -210,40 +327,12 @@ class ContactData extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Solicitud'),
-        actions: <Widget>[
-          // action button
-          /*IconButton(
-              icon: Icon(choices[0].icon),
-              onPressed: () {
-                _select(choices[0]);
-              },
-            ),
-            // action button
-            IconButton(
-              icon: Icon(choices[1].icon),
-              onPressed: () {
-                _select(choices[1]);
-              },
-            ),*/
-          // overflow menu
-          PopupMenuButton<Choice>(
-            onSelected: _select,
-            itemBuilder: (BuildContext context) {
-              return choices.skip(2).map((Choice choice) {
-                return PopupMenuItem<Choice>(
-                  value: choice,
-                  child: Text(choice.title),
-                );
-              }).toList();
-            },
-          ),
-        ],
+        title: const Text('Referencia'),
       ),
       body: const SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 8.0),
-          child: RegisterForm(),
+          child: ReferencesAddForm(),
         ),
       ),
     );

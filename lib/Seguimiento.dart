@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'RegisterPersonDialog.dart';
 
 class Seguimiento extends StatelessWidget {
   @override
@@ -94,27 +95,35 @@ class Seguimiento extends StatelessWidget {
                     color: Color(0xfff7f7f7),
                     child: Padding(
                       padding: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
-                      child: new Container(
-                        color: Colors.white,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            new Image(
-                                width: 40,
-                                height: 40,
-                                image:
-                                    new AssetImage("assets/beginprocess.png")),
-                            new Padding(
-                              padding: EdgeInsets.fromLTRB(10.0, 0, 0, 0),
-                              child: new Text('Iniciar proceso',
-                                  textAlign: TextAlign.center,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                      fontSize: 15, color: Colors.black)),
-                            ),
-                          ],
+                      child: new GestureDetector(
+                        child: Container(
+                          color: Colors.white,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              new Image(
+                                  width: 40,
+                                  height: 40,
+                                  image:
+                                  new AssetImage("assets/beginprocess.png")),
+                              new Padding(
+                                padding: EdgeInsets.fromLTRB(10.0, 0, 0, 0),
+                                child: new Text('Iniciar proceso',
+                                    textAlign: TextAlign.center,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.black)),
+                              ),
+                            ],
+                          ),
                         ),
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (_) => RegisterPersonDialog(),
+                          );
+                        },
                       ),
                     ),
                   ),

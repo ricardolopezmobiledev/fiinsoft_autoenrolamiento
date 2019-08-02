@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'RegisterForm.dart';
+import 'package:fiinsoft_autoenrolamiento/RegisterForm.dart';
+
 
 class MainView extends StatelessWidget {
   final forkey = GlobalKey<FormState>();
@@ -272,96 +273,6 @@ class MainView extends StatelessWidget {
           ],
         );
       },
-    );
-  }
-}
-
-class ContactData extends StatelessWidget {
-  Choice _selectedChoice = choices[0];
-  void _select(Choice choice) {
-    // Causes the app to rebuild with the new _selectedChoice.
-    /*setState(() {
-      _selectedChoice = choice;
-    });*/
-  }
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Solicitud'),
-        actions: <Widget>[
-          // action button
-          /*IconButton(
-              icon: Icon(choices[0].icon),
-              onPressed: () {
-                _select(choices[0]);
-              },
-            ),
-            // action button
-            IconButton(
-              icon: Icon(choices[1].icon),
-              onPressed: () {
-                _select(choices[1]);
-              },
-            ),*/
-          // overflow menu
-          PopupMenuButton<Choice>(
-            onSelected: _select,
-            itemBuilder: (BuildContext context) {
-              return choices.skip(2).map((Choice choice) {
-                return PopupMenuItem<Choice>(
-                  value: choice,
-                  child: Text(choice.title),
-                );
-              }).toList();
-            },
-          ),
-        ],
-      ),
-      body: const SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 8.0),
-          child: RegisterForm(),
-        ),
-      ),
-    );
-  }
-}
-
-class Choice {
-  const Choice({this.title, this.icon});
-
-  final String title;
-  final IconData icon;
-}
-
-const List<Choice> choices = const <Choice>[
-  const Choice(title: 'Guardar', icon: Icons.directions_car),
-  const Choice(title: 'Salir', icon: Icons.directions_bike),
-  const Choice(title: 'Guardar', icon: Icons.directions_car),
-  const Choice(title: 'Salir', icon: Icons.directions_bike),
-];
-
-class ChoiceCard extends StatelessWidget {
-  const ChoiceCard({Key key, this.choice}) : super(key: key);
-
-  final Choice choice;
-
-  @override
-  Widget build(BuildContext context) {
-    final TextStyle textStyle = Theme.of(context).textTheme.display1;
-    return Card(
-      color: Colors.white,
-      child: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Icon(choice.icon, size: 128.0, color: textStyle.color),
-            Text(choice.title, style: textStyle),
-          ],
-        ),
-      ),
     );
   }
 }
