@@ -1,18 +1,29 @@
 import 'package:flutter/material.dart';
 import 'LoginScreen.dart';
+import 'package:fiinsoft_autoenrolamiento/Utils/AuthService.dart';
+import 'package:fiinsoft_autoenrolamiento/MainView.dart';
 
-void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
+AuthService appAuth = new AuthService();
 
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(),
-    );
+void main() async {
+  // Set default home.
+  Widget _defaultHome = new MyHomePage();
+
+  // Get result of the login function.
+  bool _result = await appAuth.login();
+  if (_result) {
+    _defaultHome = new MainView();
   }
+
+  // Run app!
+  runApp(new MaterialApp(
+    title: 'App',
+    home: _defaultHome,
+    routes: <String, WidgetBuilder>{
+      // Set routes for using the Navigator.
+      '/home': (BuildContext context) => new MainView(),
+      '/login': (BuildContext context) => new MyHomePage()
+    },
+  ));
 }
