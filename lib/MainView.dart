@@ -1,9 +1,12 @@
+import 'package:fiinsoft_autoenrolamiento/Afilicacion.dart';
 import 'package:flutter/material.dart';
 import 'package:fiinsoft_autoenrolamiento/RegisterForm.dart';
-
+import 'package:fiinsoft_autoenrolamiento/Model/db/AppStatusTable.dart';
+import 'package:fiinsoft_autoenrolamiento/Seguimiento.dart';
 
 class MainView extends StatelessWidget {
   final forkey = GlobalKey<FormState>();
+  var contextGlob;
   String _email, _password;
   @override
   Widget build(BuildContext context) {
@@ -112,8 +115,8 @@ class MainView extends StatelessWidget {
                       new Expanded(
                         child: new GestureDetector(
                           onTap: () {
-                            print("tapraptaptap");
-                            _showDialog(context);
+                            contextGlob = context;
+                            getAppStatus();
                           },
                           child: new Container(
                             child: new Container(
@@ -147,7 +150,7 @@ class MainView extends StatelessWidget {
                                 ],
                               ),
                             ),
-                          ),
+                            ),
                         ),
                         flex: 2,
                       ),
@@ -274,5 +277,20 @@ class MainView extends StatelessWidget {
         );
       },
     );
+  }
+
+  void getAppStatus() async{
+    print("tapraptaptap");
+    var status  = await AppStatusTable.db.getAllAppStatus();
+    if(status.length == 0)
+      _showDialog(contextGlob);
+    else if(status[0].id_status == 1){
+      Navigator.push(
+          contextGlob, MaterialPageRoute(builder: (context) => Seguimiento()));
+    }
+    else if(status[0].id_status == 2){
+      Navigator.push(
+          contextGlob, MaterialPageRoute(builder: (context) => ListViewEx()));
+    }
   }
 }

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:fiinsoft_autoenrolamiento/Utils/RequestUtil.dart';
 import 'package:fiinsoft_autoenrolamiento/Model/db/SessionsTable.dart';
 
+
 class AuthService {
   
   RequestUtil httpRequest = new RequestUtil();

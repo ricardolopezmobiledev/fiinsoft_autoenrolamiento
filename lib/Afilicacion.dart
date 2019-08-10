@@ -4,6 +4,9 @@ import 'AfiliacionLaboralData.dart';
 import 'AfiliacionDatosEconomicos.dart';
 import 'AfiliacionReferencias.dart';
 import 'AfiliacionAvales.dart';
+import 'package:fiinsoft_autoenrolamiento/Model/db/PersonasTable.dart';
+
+import 'Model/Objects/Persona.dart';
 
 class ListViewEx extends StatefulWidget {
   const ListViewEx({Key key}) : super(key: key);
@@ -13,6 +16,19 @@ class ListViewEx extends StatefulWidget {
 }
 
 class _ListViewState extends State<ListViewEx> {
+  Persona persona;
+
+  @override
+  void initState() {
+    super.initState();
+    getFromDb();
+  }
+
+  void getFromDb() async{
+    persona = await PersonaTable.db.getPersona(1);
+    persona = persona;
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

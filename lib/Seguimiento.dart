@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'RegisterPersonDialog.dart';
+import 'package:fiinsoft_autoenrolamiento/Model/db/PersonasTable.dart';
 
 class Seguimiento extends StatelessWidget {
   @override

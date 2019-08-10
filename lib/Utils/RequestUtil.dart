@@ -1,50 +1,22 @@
-import 'dart:convert';
 import 'dart:io';
-import 'dart:async';
-import 'package:fiinsoft_autoenrolamiento/Model/Objects/Session.dart';
-import 'package:fiinsoft_autoenrolamiento/Model/db/SessionsTable.dart';
+import 'package:http/http.dart' as http;
+import 'package:fiinsoft_autoenrolamiento/globals.dart' as globals;
 
 class RequestUtil{
+  void getResponseFromService(String urlService, var bodyData) async{
+    var url =
+        urlService;
+    var client = new http.Client();
+    var request = new http.Request('POST', Uri.parse(url));
+    var body = bodyData;
+    request.headers[HttpHeaders.authorizationHeader] = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoie1wiJGlkXCI6XCIxXCIsXCJDcmVkZW5jaWFsZXNcIjpbXSxcIlBlcnNvbmFzXCI6e1wiJGlkXCI6XCIyXCIsXCJDdWVudGFzQmFuY2FyaWFzXCI6W10sXCJEb21pY2lsaW9zXCI6W10sXCJQYWlzZXNcIjpudWxsLFwiUGFpc2VzMVwiOm51bGwsXCJQZXJzb25hRGF0b3NGaXNjYWxlc1wiOltdLFwiVGVsZWZvbm9zXCI6W10sXCJVc3Vhcmlvc1wiOlt7XCIkcmVmXCI6XCIxXCJ9XSxcIlVzdWFyaW9zMVwiOlt7XCIkcmVmXCI6XCIxXCJ9XSxcIlBlcnNvbmFJZFwiOlwiNTk0M2M5ZDYtZjNiNC00NzI3LWE3MjQtNjJiMjVkNWQ2ZWI1XCIsXCJQYWlzSWRcIjoxLFwiTm9tYnJlXCI6XCJTRVJHSU9cIixcIkFwUGF0ZXJub1wiOlwiRUxJWk9ORE9cIixcIkFwTWF0ZXJub1wiOlwiR0FSU0FcIixcIkZlY2hhTmFjaW1pZW50b1wiOm51bGwsXCJTZXhvXCI6bnVsbCxcIkZvdG9ncmFmaWFcIjpudWxsLFwiVGltZVN0YW1wXCI6XCIyMDE5LTA0LTA1VDA3OjEwOjU1LjA4M1wiLFwiVXNlclN0YW1wXCI6XCJzYVwiLFwiRXh0ZW5kZWRQcm9wZXJ0aWVzXCI6bnVsbH0sXCJQZXJzb25hczFcIjp7XCIkcmVmXCI6XCIyXCJ9LFwiUm9sZXNcIjpbe1wiJGlkXCI6XCIzXCIsXCJBcGxpY2FjaW9uZXNcIjpudWxsLFwiVXN1YXJpb3NcIjpbe1wiJHJlZlwiOlwiMVwifV0sXCJSb2xJZFwiOlwiNTE4ZjQ0OWItYzVjNS00OThkLWFiNjktMWJiNjJjZjQ5MzQwXCIsXCJBcGxpY2FjaW9uSWRcIjoxLFwiTm9tYnJlUm9sXCI6XCJSMDcgLSBXRUIgLSBJbmljaWFsXCIsXCJEZXNjcmlwY2lvblwiOlwiUm9sIGluaWNpYWxcIixcIlRpbWVTdGFtcFwiOlwiMjAxOC0xMS0yN1QxMDoyNzoyNy41MjNcIixcIlVzZXJTdGFtcFwiOlwic2FcIixcIkV4dGVuZGVkUHJvcGVydGllc1wiOm51bGx9LHtcIiRpZFwiOlwiNFwiLFwiQXBsaWNhY2lvbmVzXCI6bnVsbCxcIlVzdWFyaW9zXCI6W3tcIiRyZWZcIjpcIjFcIn1dLFwiUm9sSWRcIjpcImI1Y2E4NWU3LTQwOWMtNGVhOS1hOTkxLTIwMDM0ZmE4NTIyMlwiLFwiQXBsaWNhY2lvbklkXCI6MSxcIk5vbWJyZVJvbFwiOlwiUjA4IC0gV0VCIC0gQ0FOSkVWQUxFXCIsXCJEZXNjcmlwY2lvblwiOlwiQ0FOSkVBUiBWQUxFIEZJU0lDT1wiLFwiVGltZVN0YW1wXCI6XCIyMDE4LTExLTI4VDA4OjIwOjM1LjcxN1wiLFwiVXNlclN0YW1wXCI6XCJTQVwiLFwiRXh0ZW5kZWRQcm9wZXJ0aWVzXCI6bnVsbH0se1wiJGlkXCI6XCI1XCIsXCJBcGxpY2FjaW9uZXNcIjpudWxsLFwiVXN1YXJpb3NcIjpbe1wiJHJlZlwiOlwiMVwifV0sXCJSb2xJZFwiOlwiZjU3Y2EyNTEtMGRlNS00OGY1LTg5NDktMjMyZDJlZWUyNjhjXCIsXCJBcGxpY2FjaW9uSWRcIjoyLFwiTm9tYnJlUm9sXCI6XCJSMDEgLSBNT0IgLSBQcm9tb3RvclwiLFwiRGVzY3JpcGNpb25cIjpcIlByb21vdG9yIGVuIGNhbXBvXCIsXCJUaW1lU3RhbXBcIjpcIjIwMTgtMDYtMTdUMTk6NDc6NDkuNzMzXCIsXCJVc2VyU3RhbXBcIjpcIk1BU1RFUlwiLFwiRXh0ZW5kZWRQcm9wZXJ0aWVzXCI6bnVsbH0se1wiJGlkXCI6XCI2XCIsXCJBcGxpY2FjaW9uZXNcIjpudWxsLFwiVXN1YXJpb3NcIjpbe1wiJHJlZlwiOlwiMVwifV0sXCJSb2xJZFwiOlwiNGE5ZWE0ZmQtNWVlYS00MzBiLWEyNTktMzNiMDM1N2JhMzAyXCIsXCJBcGxpY2FjaW9uSWRcIjoxLFwiTm9tYnJlUm9sXCI6XCJSMTAgLSBXRUIgLSBBdXhpbGlhciBkZSBCYW5jb1wiLFwiRGVzY3JpcGNpb25cIjpcIkF1eGlsaWFyIGRlIEJhbmNvXCIsXCJUaW1lU3RhbXBcIjpcIjIwMTgtMTEtMjhUMDg6NDg6MDIuMjgzXCIsXCJVc2VyU3RhbXBcIjpcIlNBXCIsXCJFeHRlbmRlZFByb3BlcnRpZXNcIjpudWxsfSx7XCIkaWRcIjpcIjdcIixcIkFwbGljYWNpb25lc1wiOm51bGwsXCJVc3Vhcmlvc1wiOlt7XCIkcmVmXCI6XCIxXCJ9XSxcIlJvbElkXCI6XCI5MzdmNDYzMC03MzhhLTQ4MzUtYTA1Ny0zNGQ1OWQ1OWJmN2ZcIixcIkFwbGljYWNpb25JZFwiOjEsXCJOb21icmVSb2xcIjpcIlIwMSAtIFdFQiAtIFN1cGVydmlzb3JDcmVkaXRvXCIsXCJEZXNjcmlwY2lvblwiOlwiU3VwZXJ2aXNvciBkZSBjcsOpZGl0byBcIixcIlRpbWVTdGFtcFwiOlwiMjAxOC0wOS0xM1QwNDoxNjo1My42MTdcIixcIlVzZXJTdGFtcFwiOlwiTUFTVEVSXCIsXCJFeHRlbmRlZFByb3BlcnRpZXNcIjpudWxsfSx7XCIkaWRcIjpcIjhcIixcIkFwbGljYWNpb25lc1wiOm51bGwsXCJVc3Vhcmlvc1wiOlt7XCIkcmVmXCI6XCIxXCJ9XSxcIlJvbElkXCI6XCIwOTUwODFjNi03Y2YyLTRmZmUtODhkZS05ZjBmNTQ3NGFhNTdcIixcIkFwbGljYWNpb25JZFwiOjEsXCJOb21icmVSb2xcIjpcIlIxNSAtIFdFQiAtIEdlcmVudGUgRGl2aXNpb25hbFwiLFwiRGVzY3JpcGNpb25cIjpcIkdlcmVudGUgRGl2aXNpb25hbFwiLFwiVGltZVN0YW1wXCI6XCIyMDE5LTAzLTEzVDIzOjAxOjMyLjA1M1wiLFwiVXNlclN0YW1wXCI6XCJzYVwiLFwiRXh0ZW5kZWRQcm9wZXJ0aWVzXCI6bnVsbH1dLFwiVXN1YXJpb0lkXCI6XCJhYWFhY2IwYS1iOTNiLTRlZDMtYmRjNS1kOWRhNDE4NWQzMTFcIixcIlBlcnNvbmFJZFwiOlwiNTk0M2M5ZDYtZjNiNC00NzI3LWE3MjQtNjJiMjVkNWQ2ZWI1XCIsXCJVc3VhcmlvXCI6XCJzZXJnaW9AZ3J1cG9nYXJzYS5jb21cIixcIlRpbWVTdGFtcFwiOlwiMjAxOS0wNC0wNVQwNzoxMDo1NS4wODdcIixcIlVzZXJTdGFtcFwiOlwic2FcIixcIkV4dGVuZGVkUHJvcGVydGllc1wiOm51bGx9IiwibmJmIjoxNTY1MjMxMzcyLCJleHAiOjE1Njc4MjMzNzIsImlzcyI6ImZpaW5zb2Z0LmNvbSIsImF1ZCI6Ik9yaWdpbmFjaW9uLmNvbSJ9.m-JnKw13hN_Voi5drolXB83kKwpSGZbyFnW0u3F-R0c';
+    request.bodyFields = body;
+    var future = await client
+        .send(request)
+        .then((response) => response.stream
+        .bytesToString()
+        .then((value) => globals.temporalPath = value))
+        .catchError((error) => globals.temporalPath = 'void');
 
-  /*postReq() async {
-    String url =
-        'https://www.fiinsoft.mx/Finsoft.WebAPI.Security/fiinsoftapi/Account/GetUsuario';
-    Map map = {
-      'Usuario': 'sergio@grupogarsa.com','Contrasenia': 'eli05BP!','Aplicacion': 'Originacion'
-    };
-
-    print(await apiRequest(url, map));
   }
-
-  Future<String> apiRequest(String url, Map jsonMap) async {
-    HttpClient httpClient = new HttpClient();
-    HttpClientRequest request = await httpClient.postUrl(Uri.parse(url));
-    request.headers.set('content-type', 'application/json');
-    request.add(utf8.encode(json.encode(jsonMap)));
-    HttpClientResponse response = await request.close();
-
-    // todo - you should check the response.statusCode
-    String reply = await response.transform(utf8.decoder).join();
-    var data = json.decode(reply);
-    String token = data['Data'];
-    String finalToken = token;
-    List<String> splitenToken = token.split('.');
-    token = splitenToken[1];
-    var bytesInLatin1_decoded = Base64Codec().decode(token);
-    var initialValue = Latin1Codec().decode(bytesInLatin1_decoded);
-    var jsonResponse = json.decode(initialValue);
-    var jsonResponseData = json.decode(jsonResponse['data']);
-    var jsonRoles = jsonResponseData['Roles'];
-    List<String> jsonRolesNames = new List();
-    for(int i = 0; i<jsonRoles.length; i++){
-      if(jsonRoles[i]['NombreRol'] == 'R01 - MOB - Promotor'){
-        Session session = Session(id_persona: 1,token: finalToken, email: 'sergio@grupogarsa.com', fullName: 'SERGIO ELIZONDO', isLoggedIn: true);
-        await SessionsTable.db.newSession(session);
-      }
-    }
-    print(jsonResponseData);
-
-    httpClient.close();
-    return reply;
-  }*/
 }

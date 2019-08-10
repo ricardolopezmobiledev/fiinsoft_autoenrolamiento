@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'LoginScreen.dart';
 import 'package:fiinsoft_autoenrolamiento/Utils/AuthService.dart';
 import 'package:fiinsoft_autoenrolamiento/MainView.dart';
-
+import 'package:fiinsoft_autoenrolamiento/Utils/TakePhoto.dart';
 
 AuthService appAuth = new AuthService();
 
