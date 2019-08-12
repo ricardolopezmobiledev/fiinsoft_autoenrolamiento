@@ -21,6 +21,12 @@ class Persona {
   String nombre;
   String ap_paterno;
   String ap_materno;
+  String email;
+  String escolaridad;
+  String gender;
+  String estado_civil;
+  String ocupacion;
+  String tipo_ocupacion;
   String fecha_de_nacimiento;
   String curp;
   String rfc;
@@ -38,6 +44,12 @@ class Persona {
     this.nombre,
     this.ap_paterno,
     this.ap_materno,
+    this.email,
+    this.escolaridad,
+    this.gender,
+    this.estado_civil,
+    this.ocupacion,
+    this.tipo_ocupacion,
     this.fecha_de_nacimiento,
     this.curp,
     this.rfc,
@@ -52,6 +64,12 @@ class Persona {
     nombre: json["nombre"],
     ap_paterno: json["ap_paterno"],
     ap_materno: json["ap_materno"],
+    email: json["email"],
+    escolaridad: json["escolaridad"],
+    gender: json["gender"],
+    estado_civil: json["estado_civil"],
+    ocupacion: json["ocupacion"],
+    tipo_ocupacion: json["tipo_ocupacion"],
     fecha_de_nacimiento: json["fecha_de_nacimiento"],
     curp: json["curp"],
     rfc: json["rfc"],
@@ -67,6 +85,12 @@ class Persona {
     "nombre": nombre,
     "ap_paterno": ap_paterno,
     "ap_materno": ap_materno,
+    "email": email,
+    "escolaridad": escolaridad,
+    "gender": gender,
+    "estado_civil": estado_civil,
+    "ocupacion": ocupacion,
+    "tipo_ocupacion": tipo_ocupacion,
     "fecha_de_nacimiento": fecha_de_nacimiento,
     "curp": curp,
     "rfc": rfc,

@@ -1,8 +1,34 @@
 import 'package:flutter/material.dart';
+import 'Model/Objects/Persona.dart';
 import 'RegisterPersonDialog.dart';
 import 'package:fiinsoft_autoenrolamiento/Model/db/PersonasTable.dart';
 
-class Seguimiento extends StatelessWidget {
+class Seguimiento extends StatefulWidget {
+  const Seguimiento({Key key}) : super(key: key);
+
+  @override
+  _Seguimiento createState() => _Seguimiento();
+}
+
+class _Seguimiento extends State<Seguimiento> {
+  String nombrePersona = '';
+  Persona persona;
+
+  void getPersonaFromDataBase() async{
+    persona = await PersonaTable.db.getPersona(1);
+
+    setState(() {
+      nombrePersona = persona.nombre + ' ' + persona.ap_paterno + ' ' + persona.ap_materno;
+    });
+  }
+
+  @override
+  void initState(){
+    super.initState();
+    getPersonaFromDataBase();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +75,7 @@ class Seguimiento extends StatelessWidget {
                                     child: Container(
                                       padding:
                                           EdgeInsets.fromLTRB(20, 0, 10, 0),
-                                      child: Text("SERGIO ELIZONDO GOMEZ",
+                                      child: Text(nombrePersona,
                                           style: TextStyle(
                                               fontSize: 15,
                                               color: Colors.white)),
@@ -63,7 +89,7 @@ class Seguimiento extends StatelessWidget {
                                     child: Container(
                                       padding:
                                           EdgeInsets.fromLTRB(20, 0, 10, 0),
-                                      child: Text("Justo ahora",
+                                      child: Text("",
                                           style: TextStyle(
                                               fontSize: 12,
                                               color: Colors.white)),

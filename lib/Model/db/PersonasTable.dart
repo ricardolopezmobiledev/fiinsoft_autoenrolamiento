@@ -1,3 +1,4 @@
+import 'package:fiinsoft_autoenrolamiento/Model/Objects/Documento.dart';
 import 'package:fiinsoft_autoenrolamiento/Model/Objects/Persona.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:fiinsoft_autoenrolamiento/Model/db/Database.dart';
@@ -5,7 +6,10 @@ import 'package:fiinsoft_autoenrolamiento/Model/db/AddressTable.dart';
 import 'package:fiinsoft_autoenrolamiento/Model/db/PhonesTable.dart';
 import 'package:fiinsoft_autoenrolamiento/Model/Objects/Address.dart';
 import 'package:fiinsoft_autoenrolamiento/Model/Objects/Phone.dart';
-class PersonaTable{
+
+import 'DocumentosTable.dart';
+
+class PersonaTable {
   PersonaTable._();
 
   static final PersonaTable db = PersonaTable._();
@@ -21,16 +25,26 @@ class PersonaTable{
 
   newPersona(Persona newPersona) async {
     final db = await database;
-    int  address = await AddresssTable.db.newAddress(newPersona.address);
-    int  phones = await PhonesTable.db.newPhone(newPersona.phone);
+    int address = await AddresssTable.db.newAddress(newPersona.address);
+    int phones = await PhonesTable.db.newPhone(newPersona.phone);
     //get the biggest id in the table
     var table = await db.rawQuery("SELECT MAX(id)+1 as id FROM Persona");
     int id = table.first["id"];
     //insert to the table using the new id
     var raw = await db.rawInsert(
         "INSERT Into Persona (id, idInServer, idAddress, nombre, ap_paterno, ap_materno, fecha_de_nacimiento, curp, rfc)"
-            " VALUES (?,?,?,?,?,?,?,?,?)",
-        [id, newPersona.idInServer, address, newPersona.nombre, newPersona.ap_paterno, newPersona.ap_materno, newPersona.fecha_de_nacimiento, newPersona.curp, newPersona.rfc]);
+        " VALUES (?,?,?,?,?,?,?,?,?)",
+        [
+          id,
+          newPersona.idInServer,
+          address,
+          newPersona.nombre,
+          newPersona.ap_paterno,
+          newPersona.ap_materno,
+          newPersona.fecha_de_nacimiento,
+          newPersona.curp,
+          newPersona.rfc
+        ]);
     return raw;
   }
 
@@ -45,8 +59,7 @@ class PersonaTable{
         ap_materno: persona.ap_materno,
         fecha_de_nacimiento: persona.fecha_de_nacimiento,
         curp: persona.curp,
-        rfc: persona.rfc
-    );
+        rfc: persona.rfc);
     var res = await db.update("Persona", blocked.toMap(),
         where: "id = ?", whereArgs: [persona.id]);
     return res;
@@ -55,21 +68,43 @@ class PersonaTable{
   updatePersona(Persona newPersona) async {
     final db = await database;
     //get the biggest id in the table
-    var table = await db.rawQuery("SELECT MAX(id)+1 as id FROM Persona");
+    var table = await db.rawQuery("SELECT MAX(id) as id FROM Persona");
     int id = table.first["id"];
     //insert to the table using the new id
     var raw = await db.rawUpdate(
         "UPDATE Persona "
-            "SET idInServer = ?,"
-            "idAddress = ?,"
-            "nombre = ?,"
-            "ap_paterno = ?,"
-            "ap_materno = ?,"
-            "fecha_de_nacimiento = ?,"
-            "curp = ?,"
-            "rfc = ? "
-            "WHERE id = ?",
-        [newPersona.idInServer, newPersona.idAddress, newPersona.nombre, newPersona.ap_paterno, newPersona.ap_materno, newPersona.fecha_de_nacimiento, newPersona.curp, newPersona.rfc, id]);
+        "SET idInServer = ?,"
+        "idAddress = ?,"
+        "nombre = ?,"
+        "ap_paterno = ?,"
+        "ap_materno = ?,"
+        "email = ?,"
+        "escolaridad = ?,"
+        "gender = ?,"
+        "estado_civil = ?,"
+        "ocupacion = ?,"
+        "tipo_ocupacion = ?,"
+        "fecha_de_nacimiento = ?,"
+        "curp = ?,"
+        "rfc = ? "
+        "WHERE id = ?",
+        [
+          newPersona.idInServer,
+          newPersona.idAddress,
+          newPersona.nombre,
+          newPersona.ap_paterno,
+          newPersona.ap_materno,
+          newPersona.email,
+          newPersona.escolaridad,
+          newPersona.gender,
+          newPersona.estado_civil,
+          newPersona.ocupacion,
+          newPersona.tipo_ocupacion,
+          newPersona.fecha_de_nacimiento,
+          newPersona.curp,
+          newPersona.rfc,
+          id
+        ]);
     return raw;
   }
 
@@ -77,8 +112,16 @@ class PersonaTable{
     final db = await database;
     var res = await db.query("Persona", where: "id = ?", whereArgs: [id]);
     Persona persona = res.isNotEmpty ? Persona.fromMap(res.first) : null;
-    Address address  =  await AddresssTable.db.getAddress(1);
-    Phone phones  =  await PhonesTable.db.getPhone(1);
+    Address address = await AddresssTable.db.getAddress(1);
+    List<Documento> documentos = await DocumentoTable.db.getAllDocumento();
+    List<Documento> documentosList = new List();
+    for (Documento documento in documentos) {
+      if (documento.id_persona == persona.id) {
+        documentosList.add(documento);
+      }
+    }
+    Phone phones = await PhonesTable.db.getPhone(1);
+    persona.documentos = documentosList;
     persona.address = address;
     persona.phone = phones;
     return persona;
@@ -92,7 +135,7 @@ class PersonaTable{
     var res = await db.query("Persona", where: "blocked = ? ", whereArgs: [1]);
 
     List<Persona> list =
-    res.isNotEmpty ? res.map((c) => Persona.fromMap(c)).toList() : [];
+        res.isNotEmpty ? res.map((c) => Persona.fromMap(c)).toList() : [];
     return list;
   }
 
@@ -100,7 +143,7 @@ class PersonaTable{
     final db = await database;
     var res = await db.query("Persona");
     List<Persona> list =
-    res.isNotEmpty ? res.map((c) => Persona.fromMap(c)).toList() : [];
+        res.isNotEmpty ? res.map((c) => Persona.fromMap(c)).toList() : [];
     return list;
   }
 

@@ -27,7 +27,7 @@ class Documento {
 
   factory Documento.fromMap(Map<String, dynamic> json) => new Documento(
     id: json["id"],
-    nombre: json["nomber"],
+    nombre: json["nombre"],
     id_persona: json["id_persona"],
     status: json["status"],
     path: json["path"],

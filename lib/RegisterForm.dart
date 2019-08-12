@@ -390,7 +390,7 @@ class _RegisterFormState extends State<RegisterForm> {
         cp: strCodigoPostal,
         ciudad: strCiudad,
         municipio: strMunicipio,
-        estado: strEstado,
+        estado: _selectedTypeStates,
         colonia: strColonia,
         calle: strCalle,
         num_exterior: strNumeroExt,
@@ -418,7 +418,7 @@ class _RegisterFormState extends State<RegisterForm> {
       );
       await PersonaTable.db.newPersona(persona);
       await AppStatusTable.db.newAppStatus(appStatus);
-      Navigator.push(
+      Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => Seguimiento()));
     }
     print('Form submitted');

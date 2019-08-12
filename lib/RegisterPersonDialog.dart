@@ -248,6 +248,8 @@ class RegisterPersonDialogState extends State<RegisterPersonDialog>
                         validator: (String value) {
                           if (value.trim().isEmpty) {
                             return 'RFC requerido';
+                          }else{
+                            rfc = value;
                           }
                         },
                       ),
@@ -422,7 +424,7 @@ class RegisterPersonDialogState extends State<RegisterPersonDialog>
         appStatus.id_status = 2;
         appStatus.name = 'Consulta CC';
         await  AppStatusTable.db.updateAppStatus(appStatus);
-        Navigator.push(
+        Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => ListViewEx()));
       }else{
         Toast.show("Todos los documentos son necesarios.", context, duration: Toast.LENGTH_SHORT, gravity:  Toast.BOTTOM);

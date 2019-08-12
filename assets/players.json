@@ -1,0 +1,730 @@
+
+{
+  "players": [
+{
+    "keyword": "ACOMODADOR",
+    "id": 1,
+    "autocompleteTerm": "ACOMODADOR DE ESTACIONAMIENTO",
+    "country": "U1"
+  },
+{
+    "keyword": "AGENTE",
+    "id": 1,
+    "autocompleteTerm": "AGENTE DE VIAJES",
+    "country": "I1"
+  },
+{
+    "keyword": "AGRICULTOR",
+    "id": 1,
+    "autocompleteTerm": "AGRICULTOR",
+    "country": "J3"
+  },
+{
+    "keyword": "ALBAÑIL",
+    "id": 1,
+    "autocompleteTerm": "ALBAÑIL",
+    "country": "L9"
+  },
+{
+    "keyword": "ALMACENISTA",
+    "id": 1,
+    "autocompleteTerm": "ALMACENISTA",
+    "country": "K1"
+  },
+{
+    "keyword": "ANALISTA",
+    "id": 1,
+    "autocompleteTerm": "ANALISTA",
+    "country": "D1"
+  },
+{
+    "keyword": "ARCHIVISTA",
+    "id": 1,
+    "autocompleteTerm": "ARCHIVISTA",
+    "country": "AB"
+  },
+{
+    "keyword": "ARQUITECTO",
+    "id": 1,
+    "autocompleteTerm": "ARQUITECTO",
+    "country": "D2"
+  },
+{
+    "keyword": "ASESOR",
+    "id": 1,
+    "autocompleteTerm": "ASESOR",
+    "country": "D3"
+  },
+{
+    "keyword": "ASESORES",
+    "id": 1,
+    "autocompleteTerm": "ASESORES",
+    "country": "PD"
+  },
+{
+    "keyword": "ASISTENTES",
+    "id": 1,
+    "autocompleteTerm": "ASISTENTES",
+    "country": "H1"
+  },
+{
+    "keyword": "AUDITOR",
+    "id": 1,
+    "autocompleteTerm": "AUDITOR",
+    "country": "E1"
+  },
+{
+    "keyword": "AUXILIARES",
+    "id": 1,
+    "autocompleteTerm": "AUXILIARES",
+    "country": "G1"
+  },
+{
+    "keyword": "BIBLIOTECARIO",
+    "id": 1,
+    "autocompleteTerm": "BIBLIOTECARIO",
+    "country": "G2"
+  },
+{
+    "keyword": "BOMBERO",
+    "id": 1,
+    "autocompleteTerm": "BOMBERO",
+    "country": "R1"
+  },
+{
+    "keyword": "CAJEROS",
+    "id": 1,
+    "autocompleteTerm": "CAJEROS",
+    "country": "G3"
+  },
+{
+    "keyword": "CAMARERO",
+    "id": 1,
+    "autocompleteTerm": "CAMARERO",
+    "country": "U5"
+  },
+{
+    "keyword": "CAMPESINO",
+    "id": 1,
+    "autocompleteTerm": "CAMPESINO",
+    "country": "J1"
+  },
+{
+    "keyword": "CAPTURISTA",
+    "id": 1,
+    "autocompleteTerm": "CAPTURISTA",
+    "country": "G5"
+  },
+{
+    "keyword": "CARNICERO",
+    "id": 1,
+    "autocompleteTerm": "CARNICERO",
+    "country": "U6"
+  },
+{
+    "keyword": "CARPINTERO",
+    "id": 1,
+    "autocompleteTerm": "CARPINTERO",
+    "country": "L1"
+  },
+{
+    "keyword": "CARTERO",
+    "id": 1,
+    "autocompleteTerm": "CARTERO",
+    "country": "U7"
+  },
+{
+    "keyword": "CAZADOR",
+    "id": 1,
+    "autocompleteTerm": "CAZADOR",
+    "country": "TD"
+  },
+{
+    "keyword": "CHOFER",
+    "id": 1,
+    "autocompleteTerm": "CHOFER DE CAMION DE CARGA EN GENERAL",
+    "country": "VA"
+  },
+{
+    "keyword": "CHOFER",
+    "id": 1,
+    "autocompleteTerm": "CHOFER DE CAMIONETAS DE CARGA EN GENERAL",
+    "country": "VB"
+  },
+{
+    "keyword": "CHOFER",
+    "id": 1,
+    "autocompleteTerm": "CHOFER DE CARGA",
+    "country": "N2"
+  },
+{
+    "keyword": "CHOFER",
+    "id": 1,
+    "autocompleteTerm": "CHOFER DE EMPRESA",
+    "country": "VD"
+  },
+{
+    "keyword": "CHOFER",
+    "id": 1,
+    "autocompleteTerm": "CHOFER DE MOTOCICLETA",
+    "country": "VE"
+  },
+{
+    "keyword": "CHOFER",
+    "id": 1,
+    "autocompleteTerm": "CHOFER DE PASAJEROS",
+    "country": "N3"
+  },
+{
+    "keyword": "CHOFER",
+    "id": 1,
+    "autocompleteTerm": "CHOFER DOMESTICO",
+    "country": "VC"
+  },
+{
+    "keyword": "CHOFER",
+    "id": 1,
+    "autocompleteTerm": "CHOFER TRANSPORTE ESCOLAR",
+    "country": "N4"
+  },
+{
+    "keyword": "COBRADOR",
+    "id": 1,
+    "autocompleteTerm": "COBRADOR",
+    "country": "G4"
+  },
+{
+    "keyword": "COCINERO",
+    "id": 1,
+    "autocompleteTerm": "COCINERO",
+    "country": "U8"
+  },
+{
+    "keyword": "COMERCIANTE",
+    "id": 1,
+    "autocompleteTerm": "COMERCIANTE",
+    "country": "CC"
+  },
+{
+    "keyword": "COMISIONISTA",
+    "id": 1,
+    "autocompleteTerm": "COMISIONISTA",
+    "country": "I2"
+  },
+{
+    "keyword": "CONDUCTOR",
+    "id": 1,
+    "autocompleteTerm": "CONDUCTOR (GRUA, MONTACARGAS, DRAGA)",
+    "country": "MA"
+  },
+{
+    "keyword": "CONTADOR",
+    "id": 1,
+    "autocompleteTerm": "CONTADOR",
+    "country": "D4"
+  },
+{
+    "keyword": "CONTRALOR",
+    "id": 1,
+    "autocompleteTerm": "CONTRALOR",
+    "country": "B1"
+  },
+{
+    "keyword": "CONTRATISTA",
+    "id": 1,
+    "autocompleteTerm": "CONTRATISTA",
+    "country": "L2"
+  },
+{
+    "keyword": "COSTURERA",
+    "id": 1,
+    "autocompleteTerm": "COSTURERA",
+    "country": "X1"
+  },
+{
+    "keyword": "DECORADOR",
+    "id": 1,
+    "autocompleteTerm": "DECORADOR DE  DE INTERIORES",
+    "country": "L3"
+  },
+{
+    "keyword": "DENTISTA",
+    "id": 1,
+    "autocompleteTerm": "DENTISTA",
+    "country": "D5"
+  },
+{
+    "keyword": "DIRECTOR",
+    "id": 1,
+    "autocompleteTerm": "DIRECTOR",
+    "country": "B2"
+  },
+{
+    "keyword": "EBANISTA",
+    "id": 1,
+    "autocompleteTerm": "EBANISTA",
+    "country": "L4"
+  },
+{
+    "keyword": "ELECTRICISTA",
+    "id": 1,
+    "autocompleteTerm": "ELECTRICISTA",
+    "country": "L5"
+  },
+{
+    "keyword": "EMPACADOR",
+    "id": 1,
+    "autocompleteTerm": "EMPACADOR",
+    "country": "OF"
+  },
+{
+    "keyword": "EMPLEADO",
+    "id": 1,
+    "autocompleteTerm": "EMPLEADO BANCARIO",
+    "country": "G6"
+  },
+{
+    "keyword": "ENCARGADO",
+    "id": 1,
+    "autocompleteTerm": "ENCARGADO",
+    "country": "OD"
+  },
+{
+    "keyword": "ENFERMERA",
+    "id": 1,
+    "autocompleteTerm": "ENFERMERA",
+    "country": "E3"
+  },
+{
+    "keyword": "ENSAMBLADOR",
+    "id": 1,
+    "autocompleteTerm": "ENSAMBLADOR",
+    "country": "K2"
+  },
+{
+    "keyword": "ESTAMPADOR",
+    "id": 1,
+    "autocompleteTerm": "ESTAMPADOR",
+    "country": "K3"
+  },
+{
+    "keyword": "ESTILISTA",
+    "id": 1,
+    "autocompleteTerm": "ESTILISTA",
+    "country": "U4"
+  },
+{
+    "keyword": "FUNCIONARIO",
+    "id": 1,
+    "autocompleteTerm": "FUNCIONARIO PUBLICO (CUALQUIERA)",
+    "country": "FD"
+  },
+{
+    "keyword": "GANADERO",
+    "id": 1,
+    "autocompleteTerm": "GANADERO",
+    "country": "TA"
+  },
+{
+    "keyword": "GERENTE",
+    "id": 1,
+    "autocompleteTerm": "GERENTE",
+    "country": "FB"
+  },
+{
+    "keyword": "GERENTE",
+    "id": 1,
+    "autocompleteTerm": "GERENTE DE VENTAS",
+    "country": "I3"
+  },
+{
+    "keyword": "GRANJERO",
+    "id": 1,
+    "autocompleteTerm": "GRANJERO",
+    "country": "J2"
+  },
+{
+    "keyword": "IMPRESOR",
+    "id": 1,
+    "autocompleteTerm": "IMPRESOR",
+    "country": "X2"
+  },
+{
+    "keyword": "INGENIERO",
+    "id": 1,
+    "autocompleteTerm": "INGENIERO",
+    "country": "D6"
+  },
+{
+    "keyword": "INSPECTOR",
+    "id": 1,
+    "autocompleteTerm": "INSPECTOR",
+    "country": "OB"
+  },
+{
+    "keyword": "INVESTIGADORES",
+    "id": 1,
+    "autocompleteTerm": "INVESTIGADORES",
+    "country": "PC"
+  },
+{
+    "keyword": "JARDINERO",
+    "id": 1,
+    "autocompleteTerm": "JARDINERO",
+    "country": "J4"
+  },
+{
+    "keyword": "JEFES",
+    "id": 1,
+    "autocompleteTerm": "JEFES DEPARTAMENTO",
+    "country": "H2"
+  },
+{
+    "keyword": "JUBILADO",
+    "id": 1,
+    "autocompleteTerm": "JUBILADO O PENSIONADO",
+    "country": "FJ"
+  },
+{
+    "keyword": "LABORATORISTA",
+    "id": 1,
+    "autocompleteTerm": "LABORATORISTA",
+    "country": "E4"
+  },
+{
+    "keyword": "LITOGRAFO",
+    "id": 1,
+    "autocompleteTerm": "LITOGRAFO",
+    "country": "X3"
+  },
+{
+    "keyword": "MAESTRO",
+    "id": 1,
+    "autocompleteTerm": "MAESTRO",
+    "country": "PE"
+  },
+{
+    "keyword": "MECANICO",
+    "id": 1,
+    "autocompleteTerm": "MECANICO (MANTENIMIENTO, ELECTRICISTA)",
+    "country": "OC"
+  },
+{
+    "keyword": "MEDICO",
+    "id": 1,
+    "autocompleteTerm": "MEDICO",
+    "country": "D7"
+  },
+{
+    "keyword": "MENSAJERO",
+    "id": 1,
+    "autocompleteTerm": "MENSAJERO",
+    "country": "AF"
+  },
+{
+    "keyword": "MESERO",
+    "id": 1,
+    "autocompleteTerm": "MESERO",
+    "country": "U2"
+  },
+{
+    "keyword": "MINERO",
+    "id": 1,
+    "autocompleteTerm": "MINERO",
+    "country": "J5"
+  },
+{
+    "keyword": "NO",
+    "id": 1,
+    "autocompleteTerm": "NO ESPECIFICADO",
+    "country": "ZZ"
+  },
+{
+    "keyword": "OBRERO",
+    "id": 1,
+    "autocompleteTerm": "OBRERO",
+    "country": "K6"
+  },
+{
+    "keyword": "ODONTOLOGO",
+    "id": 1,
+    "autocompleteTerm": "ODONTOLOGO",
+    "country": "D8"
+  },
+{
+    "keyword": "OPERADOR",
+    "id": 1,
+    "autocompleteTerm": "OPERADOR",
+    "country": "OE"
+  },
+{
+    "keyword": "OPERADOR",
+    "id": 1,
+    "autocompleteTerm": "OPERADOR DE COMPUTADORA",
+    "country": "AD"
+  },
+{
+    "keyword": "OPERADOR",
+    "id": 1,
+    "autocompleteTerm": "OPERADOR DE MAQUINA",
+    "country": "K5"
+  },
+{
+    "keyword": "OTRO",
+    "id": 1,
+    "autocompleteTerm": "OTRO",
+    "country": "ZX"
+  },
+{
+    "keyword": "PANADERO",
+    "id": 1,
+    "autocompleteTerm": "PANADERO",
+    "country": "U9"
+  },
+{
+    "keyword": "PELUQUERO",
+    "id": 1,
+    "autocompleteTerm": "PELUQUERO O PEINADOR",
+    "country": "SG"
+  },
+{
+    "keyword": "PEON",
+    "id": 1,
+    "autocompleteTerm": "PEON",
+    "country": "OI"
+  },
+{
+    "keyword": "PERSONAL",
+    "id": 1,
+    "autocompleteTerm": "PERSONAL DE LIMPIEZA",
+    "country": "UB"
+  },
+{
+    "keyword": "PERSONAL",
+    "id": 1,
+    "autocompleteTerm": "PERSONAL DE SEGURIDAD",
+    "country": "SB"
+  },
+{
+    "keyword": "PERSONAL",
+    "id": 1,
+    "autocompleteTerm": "PERSONAL MEDICO",
+    "country": "SD"
+  },
+{
+    "keyword": "PESCADOR",
+    "id": 1,
+    "autocompleteTerm": "PESCADOR",
+    "country": "TC"
+  },
+{
+    "keyword": "PINTOR",
+    "id": 1,
+    "autocompleteTerm": "PINTOR",
+    "country": "OG"
+  },
+{
+    "keyword": "PINTOR",
+    "id": 1,
+    "autocompleteTerm": "PINTOR (CASA)",
+    "country": "L6"
+  },
+{
+    "keyword": "PLOMERO",
+    "id": 1,
+    "autocompleteTerm": "PLOMERO",
+    "country": "L7"
+  },
+{
+    "keyword": "POLICIAS",
+    "id": 1,
+    "autocompleteTerm": "POLICIAS",
+    "country": "SC"
+  },
+{
+    "keyword": "PORTERO",
+    "id": 1,
+    "autocompleteTerm": "PORTERO",
+    "country": "UA"
+  },
+{
+    "keyword": "PROFESIONISTA",
+    "id": 1,
+    "autocompleteTerm": "PROFESIONISTA INDEPENDIENTE (LICENCIATURAS, MAESTRIAS Y DOCTORADOS)",
+    "country": "PA"
+  },
+{
+    "keyword": "PROFESOR",
+    "id": 1,
+    "autocompleteTerm": "PROFESOR",
+    "country": "D9"
+  },
+{
+    "keyword": "PROGRAMADOR",
+    "id": 1,
+    "autocompleteTerm": "PROGRAMADOR",
+    "country": "DA"
+  },
+{
+    "keyword": "PROMOTOR",
+    "id": 1,
+    "autocompleteTerm": "PROMOTOR O REPRESENTANTE DE VENTAS",
+    "country": "CE"
+  },
+{
+    "keyword": "PROPIETARIO",
+    "id": 1,
+    "autocompleteTerm": "PROPIETARIO DE NEGOCIO",
+    "country": "FA"
+  },
+{
+    "keyword": "PSICOLOGO",
+    "id": 1,
+    "autocompleteTerm": "PSICOLOGO",
+    "country": "DB"
+  },
+{
+    "keyword": "PUESTO",
+    "id": 1,
+    "autocompleteTerm": "PUESTO NO CLASIFICADO",
+    "country": "QA"
+  },
+{
+    "keyword": "RECEPCIONISTA",
+    "id": 1,
+    "autocompleteTerm": "RECEPCIONISTA",
+    "country": "G8"
+  },
+{
+    "keyword": "SASTRE",
+    "id": 1,
+    "autocompleteTerm": "SASTRE",
+    "country": "X5"
+  },
+{
+    "keyword": "SECRETARIA",
+    "id": 1,
+    "autocompleteTerm": "SECRETARIA",
+    "country": "G9"
+  },
+{
+    "keyword": "SOCIOLOGO",
+    "id": 1,
+    "autocompleteTerm": "SOCIOLOGO",
+    "country": "DC"
+  },
+{
+    "keyword": "SOLDADOR",
+    "id": 1,
+    "autocompleteTerm": "SOLDADOR",
+    "country": "OH"
+  },
+{
+    "keyword": "SUBGERENTE",
+    "id": 1,
+    "autocompleteTerm": "SUBGERENTE",
+    "country": "B4"
+  },
+{
+    "keyword": "SUPERVISOR",
+    "id": 1,
+    "autocompleteTerm": "SUPERVISOR",
+    "country": "OA"
+  },
+{
+    "keyword": "SUPERVISOR",
+    "id": 1,
+    "autocompleteTerm": "SUPERVISOR DE FABRICA",
+    "country": "K7"
+  },
+{
+    "keyword": "SUPERVISOR",
+    "id": 1,
+    "autocompleteTerm": "SUPERVISOR DE VENTAS",
+    "country": "I4"
+  },
+{
+    "keyword": "TAPICERO",
+    "id": 1,
+    "autocompleteTerm": "TAPICERO",
+    "country": "X6"
+  },
+{
+    "keyword": "TAXISTA",
+    "id": 1,
+    "autocompleteTerm": "TAXISTA",
+    "country": "N1"
+  },
+{
+    "keyword": "TECNICO",
+    "id": 1,
+    "autocompleteTerm": "TECNICO",
+    "country": "E2"
+  },
+{
+    "keyword": "TELEFONISTA",
+    "id": 1,
+    "autocompleteTerm": "TELEFONISTA",
+    "country": "AI"
+  },
+{
+    "keyword": "TESORERO",
+    "id": 1,
+    "autocompleteTerm": "TESORERO",
+    "country": "B5"
+  },
+{
+    "keyword": "TORNERO",
+    "id": 1,
+    "autocompleteTerm": "TORNERO",
+    "country": "L8"
+  },
+{
+    "keyword": "TRABAJADOR",
+    "id": 1,
+    "autocompleteTerm": "TRABAJADOR SOCIAL",
+    "country": "SF"
+  },
+{
+    "keyword": "VENDEDOR",
+    "id": 1,
+    "autocompleteTerm": "VENDEDOR",
+    "country": "I7"
+  },
+{
+    "keyword": "VENDEDOR",
+    "id": 1,
+    "autocompleteTerm": "VENDEDOR AMBULANTE",
+    "country": "CA"
+  },
+{
+    "keyword": "VENDEDOR",
+    "id": 1,
+    "autocompleteTerm": "VENDEDOR DE MERCADO",
+    "country": "CB"
+  },
+{
+    "keyword": "VENDEDOR",
+    "id": 1,
+    "autocompleteTerm": "VENDEDOR DE MOSTRADOR",
+    "country": "CD"
+  },
+{
+    "keyword": "VENDEDOR",
+    "id": 1,
+    "autocompleteTerm": "VENDEDOR DE SEGUROS",
+    "country": "I6"
+  },
+{
+    "keyword": "VENDEDOR",
+    "id": 1,
+    "autocompleteTerm": "VENDEDOR MANUFACTURAS",
+    "country": "I5"
+  },
+{
+    "keyword": "VETERINARIO",
+    "id": 1,
+    "autocompleteTerm": "VETERINARIO",
+    "country": "DD"
+  }]
+}
