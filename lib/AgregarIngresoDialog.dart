@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'Model/Objects/Ingreso.dart';
+import 'Model/db/IngresosTable.dart';
+
 class AgregarIngresoDialog extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => AgregarIngresoDialogState();
@@ -9,6 +12,8 @@ class AgregarIngresoDialogState extends State<AgregarIngresoDialog>
     with SingleTickerProviderStateMixin {
   AnimationController controller;
   Animation<double> scaleAnimation;
+  String concepto, monto;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -33,7 +38,7 @@ class AgregarIngresoDialogState extends State<AgregarIngresoDialog>
         color: Colors.transparent,
         child: ScaleTransition(
           scale: scaleAnimation,
-          child: Container(
+          child: Form(child: Container(
               margin: EdgeInsets.all(20.0),
               padding: EdgeInsets.all(15.0),
               height: 290.0,
@@ -56,8 +61,8 @@ class AgregarIngresoDialogState extends State<AgregarIngresoDialog>
                             ),
                             validator: (String value) {
                               if (value.trim().isEmpty) {
-                                return 'La marca es requerida';
-                              }
+                                return 'El concepto es requerida';
+                              }else concepto = value;
                             },
                           ),
                           TextFormField(
@@ -66,8 +71,8 @@ class AgregarIngresoDialogState extends State<AgregarIngresoDialog>
                             ),
                             validator: (String value) {
                               if (value.trim().isEmpty) {
-                                return 'El modelo es requerido';
-                              }
+                                return 'El monto es requerido';
+                              }else monto = value;
                             },
                           ),
                         ],
@@ -98,10 +103,18 @@ class AgregarIngresoDialogState extends State<AgregarIngresoDialog>
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13.0),
                                 ),
-                                onPressed: () {
-                                  setState(() {
-
-                                  });
+                                onPressed: () async{
+                                  _formKey.currentState.validate();
+                                  if (_formKey.currentState.validate()) {
+                                    if(concepto != null && monto != null ){
+                                      Ingreso newEgreso = new Ingreso(
+                                        concepto: concepto,
+                                        monto_mensual: monto,
+                                      );
+                                      await IngresosTable.db.newIngreso(newEgreso);
+                                      Navigator.pop(context);
+                                    }
+                                  }
                                 },
                               )),
                         ),
@@ -125,11 +138,7 @@ class AgregarIngresoDialogState extends State<AgregarIngresoDialog>
                                         fontSize: 13.0),
                                   ),
                                   onPressed: () {
-                                    setState(() {
-                                      /* Route route = MaterialPageRoute(
-                                          builder: (context) => LoginScreen());
-                                      Navigator.pushReplacement(context, route);
-                                   */ });
+                                    Navigator.pop(context);
                                   },
                                 ))
                         ),
@@ -138,7 +147,7 @@ class AgregarIngresoDialogState extends State<AgregarIngresoDialog>
                     flex: 1,
                   ),
                 ],
-              )),
+              )),key: _formKey,),
         ),
       ),
     );

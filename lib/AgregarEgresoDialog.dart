@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'Model/Objects/Egreso.dart';
+import 'Model/db/EgresosTable.dart';
+
 class AgregarEgresoDialog extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => AgregarEgresoDialogState();
@@ -9,6 +12,8 @@ class AgregarEgresoDialogState extends State<AgregarEgresoDialog>
     with SingleTickerProviderStateMixin {
   AnimationController controller;
   Animation<double> scaleAnimation;
+  String concepto, monto;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -28,7 +33,7 @@ class AgregarEgresoDialogState extends State<AgregarEgresoDialog>
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return Form(child: Center(
       child: Material(
         color: Colors.transparent,
         child: ScaleTransition(
@@ -56,8 +61,8 @@ class AgregarEgresoDialogState extends State<AgregarEgresoDialog>
                             ),
                             validator: (String value) {
                               if (value.trim().isEmpty) {
-                                return 'La marca es requerida';
-                              }
+                                return 'El concepto es requerida';
+                              }else concepto = value;
                             },
                           ),
                           TextFormField(
@@ -66,8 +71,8 @@ class AgregarEgresoDialogState extends State<AgregarEgresoDialog>
                             ),
                             validator: (String value) {
                               if (value.trim().isEmpty) {
-                                return 'El modelo es requerido';
-                              }
+                                return 'El monto es requerido';
+                              }else monto = value;
                             },
                           ),
                         ],
@@ -98,10 +103,18 @@ class AgregarEgresoDialogState extends State<AgregarEgresoDialog>
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13.0),
                                 ),
-                                onPressed: () {
-                                  setState(() {
-
-                                  });
+                                onPressed: () async{
+                                  _formKey.currentState.validate();
+                                  if (_formKey.currentState.validate()) {
+                                    if(concepto != null && monto != null ){
+                                      Egreso newEgreso = new Egreso(
+                                          concepto: concepto,
+                                          monto_mensual: monto,
+                                      );
+                                      await EgresosTable.db.newEgreso(newEgreso);
+                                      Navigator.pop(context);
+                                    }
+                                  }
                                 },
                               )),
                         ),
@@ -125,11 +138,7 @@ class AgregarEgresoDialogState extends State<AgregarEgresoDialog>
                                         fontSize: 13.0),
                                   ),
                                   onPressed: () {
-                                    setState(() {
-                                      /* Route route = MaterialPageRoute(
-                                          builder: (context) => LoginScreen());
-                                      Navigator.pushReplacement(context, route);
-                                   */ });
+                                    Navigator.pop(context);
                                   },
                                 ))
                         ),
@@ -141,6 +150,6 @@ class AgregarEgresoDialogState extends State<AgregarEgresoDialog>
               )),
         ),
       ),
-    );
+    ),key: _formKey,);
   }
 }

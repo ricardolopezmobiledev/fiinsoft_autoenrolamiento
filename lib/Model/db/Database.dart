@@ -22,18 +22,23 @@ class DBProvider {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentsDirectory.path, "FiinsoftAEDB.db");
     return await openDatabase(path,
-        version: 5,
+        version: 8,
         onOpen: (db) {},
         onCreate: _onCreate,
         onUpgrade: _onUpgrade);
   }
 
   _onUpgrade(Database db, int oldVersion, int newVersion) async {
-    await db.execute("CREATE TABLE Phone ("
+    await db.execute("CREATE TABLE DatosEconomicosUsuario ("
         "id INTEGER PRIMARY KEY,"
-        "numero TEXT, "
         "id_persona INTEGER,"
-        "tipo TEXT"
+        "idInServer INTEGER,"
+        "tipo_vivienda TEXT,"
+        "valor_vivienda TEXT,"
+        "habitantes INTEGER,"
+        "menos_anio BIT,"
+        "anios INTEGER,"
+        "mas_una_propiedad BIT"
         ")");
   }
 
@@ -94,6 +99,46 @@ class DBProvider {
         "numero TEXT, "
         "id_persona INTEGER,"
         "tipo TEXT"
+        ")");
+    await db.execute("CREATE TABLE Trabajo ("
+        "id INTEGER PRIMARY KEY,"
+        "idInServer INTEGER,"
+        "id_persona INTEGER,"
+        "empresa TEXT,"
+        "puesto TEXT,"
+        "sueldo TEXT,"
+        "menos_anio BIT,"
+        "antiguedad INTEGER,"
+        "phone INTEGER,"
+        "address INTEGER"
+        ")");
+    await db.execute("CREATE TABLE Ingreso ("
+        "id INTEGER PRIMARY KEY,"
+        "concepto TEXT,"
+        "monto_mensual TEXT"
+        ")");
+
+    await db.execute("CREATE TABLE Egreso ("
+        "id INTEGER PRIMARY KEY,"
+        "concepto TEXT,"
+        "monto_mensual TEXT"
+        ")");
+
+    await db.execute("CREATE TABLE Vehiculo ("
+        "id INTEGER PRIMARY KEY,"
+        "marca TEXT,"
+        "modelo TEXT,"
+        "anio TEXT"
+        ")");
+    await db.execute("CREATE TABLE DatosEconomicosUsuario ("
+        "id INTEGER PRIMARY KEY,"
+        "idInServer INTEGER,"
+        "tipo_vivienda TEXT,"
+        "valor_vivienda TEXT,"
+        "habitantes INTEGER,"
+        "menos_anio BIT,"
+        "anios INTEGER,"
+        "mas_una_propiedad BIT"
         ")");
   }
 }
