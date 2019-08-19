@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'DocumentosListFrag.dart';
 import 'ReferenceList.dart';
 class References extends StatefulWidget {
   const References({Key key}) : super(key: key);
@@ -37,7 +38,7 @@ class _ListViewState extends State<References> {
         body: TabBarView(
           children: [
             ListaDeReferencias(),
-            Icon(Icons.directions_transit),
+            DocumentosData(),
             Icon(Icons.directions_bike),
           ],
         ),

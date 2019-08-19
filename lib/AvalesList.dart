@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:fiinsoft_autoenrolamiento/Seguimiento.dart';
 import 'Model/Objects/Choise.dart';
 import 'AvalAddForm.dart';
+import 'Model/Objects/Persona.dart';
+import 'Model/db/PersonasTable.dart';
+import 'Model/db/PhonesTable.dart';
 
 class AvalList extends StatefulWidget {
   const AvalList({Key key}) : super(key: key);
@@ -17,6 +20,24 @@ class _AvalListState extends State<AvalList> {
   bool _value2 = false;
   void _onChanged2(bool value) => setState(() => _value2 = value);
   int _n = 0;
+  List<Persona> avales = new List();
+
+  void getFromDB() async {
+    avales = await PersonaTable.db.getAllPersona();
+    avales.removeAt(0);
+    for (Persona persona in avales) {
+      /*persona.phone = await PhonesTable.db.getPhone(persona.idPhone)*/;
+    }
+    setState(() {
+      avales;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getFromDB();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +49,7 @@ class _AvalListState extends State<AvalList> {
           ListView.builder(
             shrinkWrap: true,
             itemBuilder: (BuildContext context, int index) {
-              var referencia = referencias[index];
+              var aval = avales[index];
 
               return GestureDetector(
                 child: new Padding(
@@ -45,21 +66,32 @@ class _AvalListState extends State<AvalList> {
                                 Expanded(
                                   child: Padding(
                                     padding: EdgeInsets.fromLTRB(16.0, 0, 0, 0),
-                                    child: Align(alignment: Alignment.centerLeft, child: new Text(referencia.Nombre)),
+                                    child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: new Text(aval.nombre +
+                                            ' ' +
+                                            aval.ap_paterno +
+                                            ' ' +
+                                            aval.ap_materno)),
                                   ),
                                   flex: 3,
                                 ),
-                                Expanded(
+                                /*Expanded(
                                   child: Padding(
                                     padding: EdgeInsets.fromLTRB(16.0, 0, 0, 0),
-                                    child: Align(alignment: Alignment.centerLeft, child: new Text(referencia.Parentesco, style: TextStyle(fontSize: 13),)),
+                                    child: Align(alignment: Alignment.centerLeft, child: new Text(aval.parentesco, style: TextStyle(fontSize: 13),)),
                                   ),
                                   flex: 3,
-                                ),
+                                ),*/
                                 Expanded(
                                   child: Padding(
                                     padding: EdgeInsets.fromLTRB(16.0, 0, 0, 0),
-                                    child: Align(alignment: Alignment.centerLeft, child: new Text(referencia.Telefono, style: TextStyle(fontSize: 11),)),
+                                    child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: new Text(
+                                          aval.rfc,
+                                          style: TextStyle(fontSize: 11),
+                                        )),
                                   ),
                                   flex: 3,
                                 ),
@@ -76,10 +108,10 @@ class _AvalListState extends State<AvalList> {
                     ),
                   ),
                 ),
-                onTap: () => onTappedReferencia(referencia),
+                onTap: () => onTappedReferencia(aval),
               );
             },
-            itemCount: referencias.length,
+            itemCount: avales.length,
           ),
           Row(
             children: <Widget>[
@@ -97,10 +129,13 @@ class _AvalListState extends State<AvalList> {
                       fontWeight: FontWeight.bold,
                       fontSize: 13.0),
                 ),
-                onPressed: () {
+                onPressed: () async {
+                  await Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => AvalData()));
+                  avales = await PersonaTable.db.getAllPersona();
+                  avales.removeAt(0);
                   setState(() {
-                    Navigator.push(
-                        context, MaterialPageRoute(builder: (context) => AvalData()));
+                    avales;
                   });
                 },
               ),
@@ -190,21 +225,4 @@ class ChoiceCard extends StatelessWidget {
   }
 }
 
-
-
-const List<Referencia> referencias = const <Referencia>[
-  const Referencia(Nombre: 'Carlos Ricardo Lopez Lugo', Parentesco: 'Hermano', Telefono: '55-5060-8850'),
-  const Referencia(Nombre: 'Edgar Allan Lopez Lugo', Parentesco: 'Hermano', Telefono: '773-113-9900'),
-  const Referencia(Nombre: 'Natalia Aimee Martinez Acevedo', Parentesco: 'Amiga', Telefono: '773-135-9608'),
-];
-
-void onTappedReferencia(Referencia referencia) {}
-
-class Referencia {
-  const Referencia({this.Nombre, this.Parentesco, this.Telefono});
-
-  final String Nombre;
-  final String Parentesco;
-  final String Telefono;
-}
-
+void onTappedReferencia(Persona aval) {}

@@ -227,7 +227,7 @@ class _DatosLaboralesFormState extends State<DatosLaboralesForm> {
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () async {
-          updateUser();
+          await updateUser();
           print('returnPressed');
 //          Navigator.pop(context,'refresh');
           return true;

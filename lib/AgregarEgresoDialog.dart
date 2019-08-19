@@ -108,8 +108,8 @@ class AgregarEgresoDialogState extends State<AgregarEgresoDialog>
                                   if (_formKey.currentState.validate()) {
                                     if(concepto != null && monto != null ){
                                       Egreso newEgreso = new Egreso(
-                                          concepto: concepto,
-                                          monto_mensual: monto,
+                                        concepto: concepto,
+                                        monto_mensual: monto,
                                       );
                                       await EgresosTable.db.newEgreso(newEgreso);
                                       Navigator.pop(context);

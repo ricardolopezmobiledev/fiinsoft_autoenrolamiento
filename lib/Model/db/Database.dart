@@ -22,24 +22,25 @@ class DBProvider {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentsDirectory.path, "FiinsoftAEDB.db");
     return await openDatabase(path,
-        version: 8,
+        version: 1,
         onOpen: (db) {},
         onCreate: _onCreate,
         onUpgrade: _onUpgrade);
   }
 
   _onUpgrade(Database db, int oldVersion, int newVersion) async {
+    /*await db.execute("DROP TABLE IF EXISTS DatosEconomicosUsuario");
     await db.execute("CREATE TABLE DatosEconomicosUsuario ("
         "id INTEGER PRIMARY KEY,"
-        "id_persona INTEGER,"
         "idInServer INTEGER,"
+        "id_persona INTEGER,"
         "tipo_vivienda TEXT,"
         "valor_vivienda TEXT,"
         "habitantes INTEGER,"
         "menos_anio BIT,"
         "anios INTEGER,"
         "mas_una_propiedad BIT"
-        ")");
+        ")");*/
   }
 
   _onCreate(Database db, int version) async {
@@ -60,6 +61,7 @@ class DBProvider {
         "id INTEGER PRIMARY KEY,"
         "idInServer INTEGER,"
         "idAddress INTEGER,"
+        "idPhone INTEGER,"
         "nombre TEXT,"
         "ap_paterno TEXT,"
         "ap_materno TEXT,"
@@ -133,12 +135,26 @@ class DBProvider {
     await db.execute("CREATE TABLE DatosEconomicosUsuario ("
         "id INTEGER PRIMARY KEY,"
         "idInServer INTEGER,"
+        "id_persona INTEGER,"
         "tipo_vivienda TEXT,"
         "valor_vivienda TEXT,"
         "habitantes INTEGER,"
         "menos_anio BIT,"
         "anios INTEGER,"
         "mas_una_propiedad BIT"
+        ")");
+    await db.execute("CREATE TABLE Referencia ("
+        "id INTEGER PRIMARY KEY,"
+        "idInServer INTEGER,"
+        "idAddress INTEGER,"
+        "idPhone INTEGER,"
+        "nombre TEXT,"
+        "ap_paterno TEXT,"
+        "ap_materno TEXT,"
+        "parentesco TEXT,"
+        "anios INTEGER,"
+        "menos_anio BIT,"
+        "same_address BIT"
         ")");
   }
 }

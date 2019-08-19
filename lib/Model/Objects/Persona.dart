@@ -18,6 +18,7 @@ class Persona {
   int id;
   int idInServer;
   int idAddress;
+  int idPhone;
   String nombre;
   String ap_paterno;
   String ap_materno;
@@ -41,6 +42,7 @@ class Persona {
     this.id,
     this.idInServer,
     this.idAddress,
+    this.idPhone,
     this.nombre,
     this.ap_paterno,
     this.ap_materno,
@@ -61,6 +63,7 @@ class Persona {
     id: json["id"],
     idInServer: json["idInServer"],
     idAddress: json["idAddress"],
+    idPhone: json["idPhone"],
     nombre: json["nombre"],
     ap_paterno: json["ap_paterno"],
     ap_materno: json["ap_materno"],
@@ -81,7 +84,7 @@ class Persona {
   Map<String, dynamic> toMap() => {
     "id": id,
     "idInServer": idInServer,
-    "idAddress": idAddress,
+    "idPhone": idPhone,
     "nombre": nombre,
     "ap_paterno": ap_paterno,
     "ap_materno": ap_materno,

@@ -233,7 +233,7 @@ class _RegisterFormState extends State<RegisterForm> {
     }
     return WillPopScope(
         onWillPop: () async {
-          updateUser();
+          await updateUser();
           print('returnPressed');
 //          Navigator.pop(context,'refresh');
           return true;

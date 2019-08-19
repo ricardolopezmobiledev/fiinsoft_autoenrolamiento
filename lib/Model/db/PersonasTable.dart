@@ -26,18 +26,22 @@ class PersonaTable {
   newPersona(Persona newPersona) async {
     final db = await database;
     int address = await AddresssTable.db.newAddress(newPersona.address);
-    int phones = await PhonesTable.db.newPhone(newPersona.phone);
+    int phones;
+    if(newPersona.phone != null){
+       phones = await PhonesTable.db.newPhone(newPersona.phone);
+    }
     //get the biggest id in the table
     var table = await db.rawQuery("SELECT MAX(id)+1 as id FROM Persona");
     int id = table.first["id"];
     //insert to the table using the new id
     var raw = await db.rawInsert(
-        "INSERT Into Persona (id, idInServer, idAddress, nombre, ap_paterno, ap_materno, fecha_de_nacimiento, curp, rfc)"
-        " VALUES (?,?,?,?,?,?,?,?,?)",
+        "INSERT Into Persona (id, idInServer, idAddress, idPhone, nombre, ap_paterno, ap_materno, fecha_de_nacimiento, curp, rfc)"
+        " VALUES (?,?,?,?,?,?,?,?,?,?)",
         [
           id,
           newPersona.idInServer,
           address,
+          phones,
           newPersona.nombre,
           newPersona.ap_paterno,
           newPersona.ap_materno,
@@ -54,6 +58,7 @@ class PersonaTable {
         id: persona.id,
         idInServer: persona.idInServer,
         idAddress: persona.idAddress,
+        idPhone: persona.idPhone,
         nombre: persona.nombre,
         ap_paterno: persona.ap_paterno,
         ap_materno: persona.ap_materno,
@@ -69,12 +74,13 @@ class PersonaTable {
     final db = await database;
     //get the biggest id in the table
     var table = await db.rawQuery("SELECT MAX(id) as id FROM Persona");
-    int id = table.first["id"];
+    int id = newPersona.id;
     //insert to the table using the new id
     var raw = await db.rawUpdate(
         "UPDATE Persona "
         "SET idInServer = ?,"
         "idAddress = ?,"
+        "idPhone = ?,"
         "nombre = ?,"
         "ap_paterno = ?,"
         "ap_materno = ?,"
@@ -91,6 +97,7 @@ class PersonaTable {
         [
           newPersona.idInServer,
           newPersona.idAddress,
+          newPersona.idPhone,
           newPersona.nombre,
           newPersona.ap_paterno,
           newPersona.ap_materno,
@@ -112,7 +119,7 @@ class PersonaTable {
     final db = await database;
     var res = await db.query("Persona", where: "id = ?", whereArgs: [id]);
     Persona persona = res.isNotEmpty ? Persona.fromMap(res.first) : null;
-    Address address = await AddresssTable.db.getAddress(1);
+    Address address = await AddresssTable.db.getAddress(persona.idAddress);
     List<Documento> documentos = await DocumentoTable.db.getAllDocumento();
     List<Documento> documentosList = new List();
     for (Documento documento in documentos) {
@@ -120,7 +127,7 @@ class PersonaTable {
         documentosList.add(documento);
       }
     }
-    Phone phones = await PhonesTable.db.getPhone(1);
+    Phone phones = await PhonesTable.db.getPhone(persona.idPhone);
     persona.documentos = documentosList;
     persona.address = address;
     persona.phone = phones;

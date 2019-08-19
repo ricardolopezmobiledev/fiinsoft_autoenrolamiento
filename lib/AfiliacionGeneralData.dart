@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'DatosGenerales.dart';
+import 'DocumentosListFrag.dart';
 class GeneralData extends StatefulWidget {
   const GeneralData({Key key}) : super(key: key);
 
@@ -37,7 +38,7 @@ class _ListViewState extends State<GeneralData> {
         body: TabBarView(
           children: [
             ContactData(),
-            Icon(Icons.directions_transit),
+            DocumentosData(),
             Icon(Icons.directions_bike),
           ],
         ),

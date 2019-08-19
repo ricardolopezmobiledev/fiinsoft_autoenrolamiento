@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'DatosLaborales.dart';
+import 'DocumentosListFrag.dart';
 class LaboralData extends StatefulWidget {
   const LaboralData({Key key}) : super(key: key);
 
@@ -37,7 +38,7 @@ class _ListViewState extends State<LaboralData> {
         body: TabBarView(
           children: [
             ContactLaboralData (),
-            Icon(Icons.directions_transit),
+            DocumentosData(),
             Icon(Icons.directions_bike),
           ],
         ),

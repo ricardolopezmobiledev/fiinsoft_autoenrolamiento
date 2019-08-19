@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'AvalesList.dart';
+import 'DocumentosListFrag.dart';
 class Avales extends StatefulWidget {
   const Avales({Key key}) : super(key: key);
 
@@ -37,7 +38,7 @@ class _ListViewState extends State<Avales> {
         body: TabBarView(
           children: [
             ListaDeAvales(),
-            Icon(Icons.directions_transit),
+            DocumentosData(),
             Icon(Icons.directions_bike),
           ],
         ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:progress_dialog/progress_dialog.dart';
+import 'package:toast/toast.dart';
 import 'MainView.dart';
 import 'dart:convert';
 import 'dart:io';
@@ -20,10 +22,10 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   final forkey = GlobalKey<FormState>();
   String _email, _password, _token, _idUser;
+  ProgressDialog pr;
 
   void _GetLoginAndChangeView() {
-    /*print(_email);
-    print(_password);*/
+    pr.show();
     postReq();
   }
 
@@ -127,6 +129,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       onPressed: () {
                         if (forkey.currentState.validate()) {
                           forkey.currentState.save();
+                          pr = new ProgressDialog(context,ProgressDialogType.Normal);
+                          pr.setMessage('Por favor, espera...');
                           _GetLoginAndChangeView();
                         }
                       },
@@ -181,8 +185,9 @@ class _MyHomePageState extends State<MyHomePage> {
       'Aplicacion': 'Originacion'
     };
 
-    print(await apiRequest(url, map));
-    getUserData(_token, _idUser);
+    String response  = await apiRequest(url, map);
+    if(response != '') getUserData(_token, _idUser);
+
   }
 
   Future<String> apiRequest(String url, Map jsonMap) async {
@@ -196,26 +201,31 @@ class _MyHomePageState extends State<MyHomePage> {
 
     // todo - you should check the response.statusCode
     String reply = await response.transform(utf8.decoder).join();
-    var data = json.decode(reply);
-    String token = data['Data'];
-    String finalToken = token;
-    List<String> splitenToken = token.split('.');
-    token = splitenToken[1];
-    var bytesInLatin1_decoded = Base64Codec().decode(token);
-    var initialValue = Latin1Codec().decode(bytesInLatin1_decoded);
-    var jsonResponse = json.decode(initialValue);
-    var jsonResponseData = json.decode(jsonResponse['data']);
-    var jsonRoles = jsonResponseData['Roles'];
-    var usuarioidBase = jsonResponseData['UsuarioId'];
-    for (int i = 0; i < jsonRoles.length; i++) {
-      if (jsonRoles[i]['NombreRol'] == 'R01 - MOB - Promotor') {
-        _idUser = usuarioidBase;
-        _token = finalToken;
+    if(reply == null || reply!= ''){
+      var data = json.decode(reply);
+      String token = data['Data'];
+      String finalToken = token;
+      List<String> splitenToken = token.split('.');
+      token = splitenToken[1];
+      var bytesInLatin1_decoded = Base64Codec().decode(token);
+      var initialValue = Latin1Codec().decode(bytesInLatin1_decoded);
+      var jsonResponse = json.decode(initialValue);
+      var jsonResponseData = json.decode(jsonResponse['data']);
+      var jsonRoles = jsonResponseData['Roles'];
+      var usuarioidBase = jsonResponseData['UsuarioId'];
+      for (int i = 0; i < jsonRoles.length; i++) {
+        if (jsonRoles[i]['NombreRol'] == 'R01 - MOB - Promotor') {
+          _idUser = usuarioidBase;
+          _token = finalToken;
+        }
       }
-    }
-    print(jsonResponseData);
+      print(jsonResponseData);
 
-    httpClient.close();
+      httpClient.close();
+    }else{
+      pr.hide();
+      Toast.show("Usuario o contraseña incorrecto.", context, duration: Toast.LENGTH_SHORT, gravity:  Toast.BOTTOM);
+    }
     return reply;
   }
 
@@ -224,7 +234,7 @@ class _MyHomePageState extends State<MyHomePage> {
         "https://www.fiinsoft.mx/Finsoft.WebAPI.Originacion.Test/fiinsoftapi/UsuariosPersonas/Get";
     var client = new http.Client();
     var request = new http.Request('POST', Uri.parse(url));
-    var body = {'id_usuario': 'aaaacb0a-b93b-4ed3-bdc5-d9da4185d311'};
+    var body = {'id_usuario': idUser};
 //  request.headers[HttpHeaders.CONTENT_TYPE] = 'application/json; charset=utf-8';
     request.headers[HttpHeaders.authorizationHeader] = 'Bearer $token_str';
     request.bodyFields = body;
@@ -233,9 +243,14 @@ class _MyHomePageState extends State<MyHomePage> {
         .then((response) => response.stream
             .bytesToString()
             .then((value) => ininSession(token_str,value.toString())))
-        .catchError((error) => print(error.toString()));
+        .catchError((error) => errorReq(error));
   }
 
+  void errorReq(Error error){
+    pr.hide();
+    Toast.show("Intenta de nuevo más tarde.", context, duration: Toast.LENGTH_SHORT, gravity:  Toast.BOTTOM);
+    print(error.toString());
+  }
   void ininSession(String token_str, String response) async {
     var jsonResponse = json.decode(response);
     var data = jsonResponse['Data'];
@@ -248,6 +263,7 @@ class _MyHomePageState extends State<MyHomePage> {
         fullName: nombre,
         isLoggedIn: true);
     await SessionsTable.db.newSession(session);
+    pr.hide();
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => MainView()),

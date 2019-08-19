@@ -1,1 +1,2 @@
 String temporalPath;
+String pathFile;

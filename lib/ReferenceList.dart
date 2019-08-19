@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fiinsoft_autoenrolamiento/Seguimiento.dart';
 import 'Model/Objects/Choise.dart';
+import 'Model/Objects/Referencia.dart';
+import 'Model/db/PhonesTable.dart';
+import 'Model/db/ReferenciasTable.dart';
 import 'ReferencesAddForm.dart';
 
 class ReferenceList extends StatefulWidget {
@@ -16,7 +19,23 @@ class _ReferenceListState extends State<ReferenceList> {
   bool _value1 = false;
   bool _value2 = false;
   void _onChanged2(bool value) => setState(() => _value2 = value);
+  List<Referencia> referencias = new List();
   int _n = 0;
+
+  void getFromDB() async{
+    referencias = await ReferenciasTable.db.getAllReferencia();
+    for(Referencia referencia in referencias){
+      referencia.phone = await PhonesTable.db.getPhone(referencia.idPhone);
+    }
+    setState(() {
+      referencias;
+    });
+  }
+  @override
+  void initState(){
+    super.initState();
+    getFromDB();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,21 +64,21 @@ class _ReferenceListState extends State<ReferenceList> {
                                 Expanded(
                                   child: Padding(
                                     padding: EdgeInsets.fromLTRB(16.0, 0, 0, 0),
-                                    child: Align(alignment: Alignment.centerLeft, child: new Text(referencia.Nombre)),
+                                    child: Align(alignment: Alignment.centerLeft, child: new Text(referencia.nombre+' '+referencia.ap_paterno+' '+referencia.ap_materno)),
                                   ),
                                   flex: 3,
                                 ),
                                 Expanded(
                                   child: Padding(
                                     padding: EdgeInsets.fromLTRB(16.0, 0, 0, 0),
-                                    child: Align(alignment: Alignment.centerLeft, child: new Text(referencia.Parentesco, style: TextStyle(fontSize: 13),)),
+                                    child: Align(alignment: Alignment.centerLeft, child: new Text(referencia.parentesco, style: TextStyle(fontSize: 13),)),
                                   ),
                                   flex: 3,
                                 ),
                                 Expanded(
                                   child: Padding(
                                     padding: EdgeInsets.fromLTRB(16.0, 0, 0, 0),
-                                    child: Align(alignment: Alignment.centerLeft, child: new Text(referencia.Telefono, style: TextStyle(fontSize: 11),)),
+                                    child: Align(alignment: Alignment.centerLeft, child: new Text(referencia.phone.numero, style: TextStyle(fontSize: 11),)),
                                   ),
                                   flex: 3,
                                 ),
@@ -97,11 +116,10 @@ class _ReferenceListState extends State<ReferenceList> {
                       fontWeight: FontWeight.bold,
                       fontSize: 13.0),
                 ),
-                onPressed: () {
-                  setState(() {
-                    Navigator.push(
+                onPressed: () async{
+                    await Navigator.push(
                         context, MaterialPageRoute(builder: (context) => ReferenceData()));
-                  });
+                    getFromDB();
                 },
               ),
             ],
@@ -192,19 +210,6 @@ class ChoiceCard extends StatelessWidget {
 
 
 
-const List<Referencia> referencias = const <Referencia>[
-  const Referencia(Nombre: 'Carlos Ricardo Lopez Lugo', Parentesco: 'Hermano', Telefono: '55-5060-8850'),
-  const Referencia(Nombre: 'Edgar Allan Lopez Lugo', Parentesco: 'Hermano', Telefono: '773-113-9900'),
-  const Referencia(Nombre: 'Natalia Aimee Martinez Acevedo', Parentesco: 'Amiga', Telefono: '773-135-9608'),
-];
-
 void onTappedReferencia(Referencia referencia) {}
 
-class Referencia {
-  const Referencia({this.Nombre, this.Parentesco, this.Telefono});
-
-  final String Nombre;
-  final String Parentesco;
-  final String Telefono;
-}
 

@@ -135,7 +135,7 @@ class _ContactLaboralData extends  State<ContactLaboralData>  {
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () async {
-      updateUser();
+      await updateUser();
       print('returnPressed');
 //          Navigator.pop(context,'refresh');
       return true;
