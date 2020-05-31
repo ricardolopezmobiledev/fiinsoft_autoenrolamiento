@@ -7,6 +7,7 @@ import 'Model/Objects/Persona.dart';
 import 'Model/Objects/Players.dart';
 import 'Model/db/PersonasTable.dart';
 import 'Model/db/DocumentosTable.dart';
+import 'package:fiinsoft_autoenrolamiento/Utils/TextFormatt.dart';
 
 class RegisterForm extends StatefulWidget {
   const RegisterForm({Key key}) : super(key: key);
@@ -244,6 +245,9 @@ class _RegisterFormState extends State<RegisterForm> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               TextFormField(
+                inputFormatters: [
+                  new UpperCaseTextFormatter(),
+                ],
                 focusNode: new AlwaysDisabledFocusNode(),
                 style: TextStyle(color: Colors.grey),
                 controller: _controllerNombre,
@@ -257,6 +261,9 @@ class _RegisterFormState extends State<RegisterForm> {
                 },
               ),
               TextFormField(
+                inputFormatters: [
+                  new UpperCaseTextFormatter(),
+                ],
                 focusNode: new AlwaysDisabledFocusNode(),
                 style: TextStyle(color: Colors.grey),
                 controller:_controllerAP,
@@ -270,6 +277,9 @@ class _RegisterFormState extends State<RegisterForm> {
                 },
               ),
               TextFormField(
+                inputFormatters: [
+                  new UpperCaseTextFormatter(),
+                ],
                 focusNode: new AlwaysDisabledFocusNode(),
                 style: TextStyle(color: Colors.grey),
                 controller:_controllerAM,
@@ -283,6 +293,9 @@ class _RegisterFormState extends State<RegisterForm> {
                 },
               ),
               TextFormField(
+                inputFormatters: [
+                  new UpperCaseTextFormatter(),
+                ],
                 controller: _controllerEmail,
                 decoration: const InputDecoration(
                   labelText: 'Email',
@@ -294,6 +307,9 @@ class _RegisterFormState extends State<RegisterForm> {
                 },
               ),
               TextFormField(
+                inputFormatters: [
+                  new UpperCaseTextFormatter(),
+                ],
                 focusNode: new AlwaysDisabledFocusNode(),
                 style: TextStyle(color: Colors.grey),
                 controller: _controllerBithdate,
@@ -307,6 +323,9 @@ class _RegisterFormState extends State<RegisterForm> {
                 },
               ),
               TextFormField(
+                inputFormatters: [
+                  new UpperCaseTextFormatter(),
+                ],
                 controller: _controllerCurp,
                 decoration: const InputDecoration(
                   labelText: 'CURP',
@@ -326,6 +345,9 @@ class _RegisterFormState extends State<RegisterForm> {
                 onChanged: changedDropDownItem,
               ),
               TextFormField(
+                inputFormatters: [
+                  new UpperCaseTextFormatter(),
+                ],
                 focusNode: new AlwaysDisabledFocusNode(),
                 style: TextStyle(color: Colors.grey),
                 controller: _controllerPhone,
@@ -466,6 +488,9 @@ class _RegisterFormState extends State<RegisterForm> {
                 ],
               ),
               TextFormField(
+                inputFormatters: [
+                  new UpperCaseTextFormatter(),
+                ],
                 focusNode: new AlwaysDisabledFocusNode(),
                 style: TextStyle(color: Colors.grey),
                 controller: _controllerCP,
@@ -479,6 +504,9 @@ class _RegisterFormState extends State<RegisterForm> {
                 },
               ),
               TextFormField(
+                inputFormatters: [
+                  new UpperCaseTextFormatter(),
+                ],
                 focusNode: new AlwaysDisabledFocusNode(),
                 style: TextStyle(color: Colors.grey),
                 controller: _controllerCiudad,
@@ -492,6 +520,9 @@ class _RegisterFormState extends State<RegisterForm> {
                 },
               ),
               TextFormField(
+                inputFormatters: [
+                  new UpperCaseTextFormatter(),
+                ],
                 focusNode: new AlwaysDisabledFocusNode(),
                 style: TextStyle(color: Colors.grey),
                 controller: _controllerMun,
@@ -505,6 +536,9 @@ class _RegisterFormState extends State<RegisterForm> {
                 },
               ),
               TextFormField(
+                inputFormatters: [
+                  new UpperCaseTextFormatter(),
+                ],
                 focusNode: new AlwaysDisabledFocusNode(),
                 style: TextStyle(color: Colors.grey),
                 controller: _controllerEst,
@@ -518,6 +552,9 @@ class _RegisterFormState extends State<RegisterForm> {
                 },
               ),
               TextFormField(
+                inputFormatters: [
+                  new UpperCaseTextFormatter(),
+                ],
                 focusNode: new AlwaysDisabledFocusNode(),
                 style: TextStyle(color: Colors.grey),
                 controller: _controllerCol,
@@ -531,6 +568,9 @@ class _RegisterFormState extends State<RegisterForm> {
                 },
               ),
               TextFormField(
+                inputFormatters: [
+                  new UpperCaseTextFormatter(),
+                ],
                 focusNode: new AlwaysDisabledFocusNode(),
                 style: TextStyle(color: Colors.grey),
                 controller: _controllerNumExt,
@@ -544,6 +584,9 @@ class _RegisterFormState extends State<RegisterForm> {
                 },
               ),
               TextFormField(
+                inputFormatters: [
+                  new UpperCaseTextFormatter(),
+                ],
                 focusNode: new AlwaysDisabledFocusNode(),
                 style: TextStyle(color: Colors.grey),
                 controller: _controllerNumInt,
@@ -557,6 +600,9 @@ class _RegisterFormState extends State<RegisterForm> {
                 },
               ),
               TextFormField(
+                inputFormatters: [
+                  new UpperCaseTextFormatter(),
+                ],
                 focusNode: new AlwaysDisabledFocusNode(),
                 style: TextStyle(color: Colors.grey),
                 controller: _controllerCalle,

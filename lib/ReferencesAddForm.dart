@@ -199,6 +199,9 @@ class _ReferencesAddFormState extends State<ReferencesAddForm> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             TextFormField(
+              inputFormatters: [
+                new UpperCaseTextFormatter(),
+              ],
               controller: _controllerNombre,
               decoration: const InputDecoration(
                 labelText: 'Nombre(s)',
@@ -211,6 +214,9 @@ class _ReferencesAddFormState extends State<ReferencesAddForm> {
             ),
             /*const SizedBox(height: 16.0),*/
             TextFormField(
+              inputFormatters: [
+                new UpperCaseTextFormatter(),
+              ],
               controller: _controllerApellidoP,
               decoration: const InputDecoration(
                 labelText: 'Apellido paterno',
@@ -223,6 +229,9 @@ class _ReferencesAddFormState extends State<ReferencesAddForm> {
             ),
             /*const SizedBox(height: 16.0),*/
             TextFormField(
+              inputFormatters: [
+                new UpperCaseTextFormatter(),
+              ],
               controller: _controllerApellidoM,
               decoration: const InputDecoration(
                 labelText: 'Apellido materno',
@@ -234,6 +243,9 @@ class _ReferencesAddFormState extends State<ReferencesAddForm> {
               },
             ),
             TextFormField(
+              inputFormatters: [
+                new UpperCaseTextFormatter(),
+              ],
               controller: _controllerParentesco,
               decoration: const InputDecoration(
                 labelText: 'Parentesco',
@@ -468,6 +480,9 @@ class _ReferencesAddFormState extends State<ReferencesAddForm> {
               },
             ),
             TextFormField(
+              inputFormatters: [
+                new UpperCaseTextFormatter(),
+              ],
               controller: phoneController,
               decoration: const InputDecoration(
                 labelText: 'Teléfono',

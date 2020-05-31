@@ -238,6 +238,9 @@ class _DatosLaboralesFormState extends State<DatosLaboralesForm> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               TextFormField(
+                inputFormatters: [
+                  new UpperCaseTextFormatter(),
+                ],
                 controller: _controllerEmpresa,
                 decoration: const InputDecoration(
                   labelText: 'Empresa',
@@ -249,6 +252,9 @@ class _DatosLaboralesFormState extends State<DatosLaboralesForm> {
                 },
               ),
               TextFormField(
+                inputFormatters: [
+                  new UpperCaseTextFormatter(),
+                ],
                 controller: _controllerPuesto,
                 decoration: const InputDecoration(
                   labelText: 'Puesto',
@@ -260,6 +266,9 @@ class _DatosLaboralesFormState extends State<DatosLaboralesForm> {
                 },
               ),
               TextFormField(
+                inputFormatters: [
+                  new UpperCaseTextFormatter(),
+                ],
                 controller: _controllerSueldo,
                 decoration: const InputDecoration(
                   labelText: 'Sueldo',
@@ -332,6 +341,9 @@ class _DatosLaboralesFormState extends State<DatosLaboralesForm> {
                 ],
               ),
               TextFormField(
+                inputFormatters: [
+                  new UpperCaseTextFormatter(),
+                ],
                 controller: _controllerPhone,
                 decoration: const InputDecoration(
                   labelText: 'Teléfono',

@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:fiinsoft_autoenrolamiento/Seguimiento.dart';
-import 'package:flutter/services.dart';
 import 'Model/Objects/Choise.dart';
 import 'package:fiinsoft_autoenrolamiento/Model/Objects/Persona.dart';
 import 'package:fiinsoft_autoenrolamiento/Model/Objects/Address.dart';

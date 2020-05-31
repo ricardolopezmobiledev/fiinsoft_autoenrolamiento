@@ -12,6 +12,7 @@ import 'Model/db/IngresosTable.dart';
 import 'Model/db/VehiculosTable.dart';
 import 'Model/db/DatosEconomicosUsuariosTable.dart';
 import 'Model/Objects/DatosEconomicosUsuario.dart';
+import 'package:fiinsoft_autoenrolamiento/Utils/TextFormatt.dart';
 
 
 class ContactLaboralData extends StatefulWidget {
@@ -230,6 +231,9 @@ class _ContactLaboralData extends  State<ContactLaboralData>  {
                         ],
                       ),
                       TextFormField(
+                        inputFormatters: [
+                          new UpperCaseTextFormatter(),
+                        ],
                         controller: valueProp,
                         decoration: const InputDecoration(
                           labelText: 'Valor de la propiedad',

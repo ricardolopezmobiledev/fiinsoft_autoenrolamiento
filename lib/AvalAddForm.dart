@@ -280,6 +280,9 @@ class _AvalAddFormState extends State<AvalAddForm> {
             height: 10,
           ),
           TextFormField(
+            inputFormatters: [
+              new UpperCaseTextFormatter(),
+            ],
             controller: _controllerRFC,
             decoration: const InputDecoration(
               labelText: 'RFC',
@@ -291,6 +294,9 @@ class _AvalAddFormState extends State<AvalAddForm> {
             },
           ),
           TextFormField(
+            inputFormatters: [
+              new UpperCaseTextFormatter(),
+            ],
             controller: _controllerCURP,
             decoration: const InputDecoration(
               labelText: 'CURP',

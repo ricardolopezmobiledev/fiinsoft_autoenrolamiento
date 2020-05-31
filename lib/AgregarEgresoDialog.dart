@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:fiinsoft_autoenrolamiento/Utils/TextFormatt.dart';
 import 'Model/Objects/Egreso.dart';
 import 'Model/db/EgresosTable.dart';
 
@@ -56,6 +56,9 @@ class AgregarEgresoDialogState extends State<AgregarEgresoDialog>
                       child: Column(
                         children: <Widget>[
                           TextFormField(
+                            inputFormatters: [
+                              new UpperCaseTextFormatter(),
+                            ],
                             decoration: const InputDecoration(
                               labelText: 'Concepto',
                             ),
@@ -66,6 +69,9 @@ class AgregarEgresoDialogState extends State<AgregarEgresoDialog>
                             },
                           ),
                           TextFormField(
+                            inputFormatters: [
+                              new UpperCaseTextFormatter(),
+                            ],
                             decoration: const InputDecoration(
                               labelText: 'Monnto mensual',
                             ),

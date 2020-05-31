@@ -207,9 +207,10 @@ class _MyHomePageState extends State<MyHomePage> {
       String finalToken = token;
       List<String> splitenToken = token.split('.');
       token = splitenToken[1];
-      var bytesInLatin1_decoded = Base64Codec().decode(token);
+      print(token);
+      var bytesInLatin1_decoded = Base64Codec().decode(token+"-");
       var initialValue = Latin1Codec().decode(bytesInLatin1_decoded);
-      var jsonResponse = json.decode(initialValue);
+      var jsonResponse = json.decode(initialValue.replaceAll(initialValue.substring(initialValue.length-1), ""));
       var jsonResponseData = json.decode(jsonResponse['data']);
       var jsonRoles = jsonResponseData['Roles'];
       var usuarioidBase = jsonResponseData['UsuarioId'];

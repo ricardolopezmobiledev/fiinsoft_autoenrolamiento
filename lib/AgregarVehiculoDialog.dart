@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:fiinsoft_autoenrolamiento/Utils/TextFormatt.dart';
 import 'Model/Objects/Vehiculo.dart';
 import 'Model/db/VehiculosTable.dart';
 
@@ -56,6 +56,9 @@ class AgregarVehiculoDialogState extends State<AgregarVehiculoDialog>
                     child: Column(
                       children: <Widget>[
                         TextFormField(
+                          inputFormatters: [
+                            new UpperCaseTextFormatter(),
+                          ],
                           decoration: const InputDecoration(
                             labelText: 'Marca',
                           ),
@@ -66,6 +69,9 @@ class AgregarVehiculoDialogState extends State<AgregarVehiculoDialog>
                           },
                         ),
                         TextFormField(
+                          inputFormatters: [
+                            new UpperCaseTextFormatter(),
+                          ],
                           decoration: const InputDecoration(
                             labelText: 'Modelo',
                           ),
@@ -76,6 +82,9 @@ class AgregarVehiculoDialogState extends State<AgregarVehiculoDialog>
                           },
                         ),
                         TextFormField(
+                          inputFormatters: [
+                            new UpperCaseTextFormatter(),
+                          ],
                           decoration: const InputDecoration(
                             labelText: 'Año',
                           ),
